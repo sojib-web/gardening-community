@@ -46,7 +46,8 @@ const gardeners = [
   // Assume more gardeners but only active shown
 ];
 
-const FeaturedGardeners = () => {
+const FeaturedGardeners = ({ gardeningData }) => {
+  console.log(gardeningData);
   // শুধু active gardeners নিবো
   const activeGardeners = gardeners
     .filter((g) => g.status === "active")
@@ -59,7 +60,7 @@ const FeaturedGardeners = () => {
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {activeGardeners.map((gardener) => (
+        {gardeningData.map((gardener) => (
           <div
             key={gardener._id}
             className="bg-gradient-to-tr from-green-100 to-green-200 rounded-3xl p-6 shadow-lg transform transition-transform hover:scale-105 hover:shadow-2xl cursor-pointer"

@@ -18,7 +18,11 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => "http://localhost:3000/gardening",
+        loader: async () => {
+          const res = await fetch("http://localhost:3000/gardening");
+          const data = await res.json();
+          return data; // this goes into useLoaderData()
+        },
 
         Component: Home,
         hydrateFallbackElement: <p> Loading..........</p>,
