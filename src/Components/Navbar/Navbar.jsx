@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router"; // এখানে ডোম থেকে ইম্পোর্ট
 import Swal from "sweetalert2";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo1.png";
 import { AuthContext } from "../../Context/AuthContext";
 
 const Navbar = () => {

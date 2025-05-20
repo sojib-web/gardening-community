@@ -1,58 +1,45 @@
 import React from "react";
 
-const tips = [
-  {
-    id: 1,
-    title: "Water your plants early in the morning",
-    description:
-      "Watering early reduces evaporation and helps plants absorb more moisture.",
-  },
-  {
-    id: 2,
-    title: "Use compost for better soil health",
-    description:
-      "Compost enriches soil with essential nutrients and improves moisture retention.",
-  },
-  {
-    id: 3,
-    title: "Prune dead leaves regularly",
-    description: "Removing dead leaves prevents pests and promotes new growth.",
-  },
-  {
-    id: 4,
-    title: "Rotate plants to ensure even sunlight",
-    description:
-      "Rotating plants helps them grow evenly by receiving balanced sunlight.",
-  },
-  {
-    id: 5,
-    title: "Mulch your garden beds",
-    description: "Mulching helps retain soil moisture and suppress weeds.",
-  },
-  {
-    id: 6,
-    title: "Use natural pest repellents",
-    description:
-      "Natural repellents keep your garden safe from harmful insects without chemicals.",
-  },
-];
-
-const TopTrendingTips = () => {
+const TopTrendingTips = ({ tips }) => {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12">
-      <h2 className="text-3xl font-bold text-green-800 mb-8 text-center">
-        🌟 Top Trending Tips
-      </h2>
-      <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+    <div className="max-w-6xl mx-auto py-14 px-4">
+      <div className="text-center mb-12">
+        <h2 className="text-4xl font-bold text-green-900 mb-2">
+          🌿 Top Trending Gardening Tips
+        </h2>
+        <p className="text-green-600 text-sm max-w-xl mx-auto">
+          Discover the most effective gardening tips handpicked from expert
+          gardeners to transform your outdoor space.
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
         {tips.map((tip) => (
           <div
-            key={tip.id}
-            className="bg-green-50 p-5 rounded-xl shadow-md hover:shadow-xl transition-shadow cursor-pointer"
+            key={tip._id}
+            className="bg-white rounded-xl shadow-lg  hover:shadow-2xl hover:scale-[1.02] transition duration-300 group"
           >
-            <h3 className="text-xl font-semibold text-green-900 mb-2">
-              {tip.title}
-            </h3>
-            <p className="text-green-700 text-sm">{tip.description}</p>
+            <div className="overflow-hidden rounded-t-xl">
+              <img
+                src={tip.image}
+                alt={tip.title}
+                className="w-full h-44 object-cover group-hover:scale-105 transition duration-300"
+              />
+            </div>
+            <div className="p-5 space-y-3">
+              <div className="flex justify-between items-center">
+                <h3 className="text-xl font-semibold text-green-800">
+                  {tip.title}
+                </h3>
+                <span className="badge badge-success text-white text-xs">
+                  Tip
+                </span>
+              </div>
+              <p className="text-sm text-gray-700">{tip.description}</p>
+              <p className="text-sm text-right italic text-green-500">
+                — {tip.author}
+              </p>
+            </div>
           </div>
         ))}
       </div>

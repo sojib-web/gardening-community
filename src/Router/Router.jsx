@@ -8,6 +8,7 @@ import MyTips from "../Components/MyTips/MyTips";
 import SignUp from "../Components/SignUp/SignUp";
 import Login from "../Components/LogIn/LogIn";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import TopTrendingTips from "../Components/TopTrendingTips/TopTrendingTips";
 
 export const router = createBrowserRouter([
   {
@@ -19,11 +20,14 @@ export const router = createBrowserRouter([
       {
         index: true,
         loader: async () => {
-          const res = await fetch("http://localhost:3000/gardening");
-          const data = await res.json();
-          return data; // this goes into useLoaderData()
+          const [gardeningRes, tipsRes] = await Promise.all([
+            fetch("http://localhost:3000/gardening"),
+            fetch("http://localhost:3000/top-trending-tips"),
+          ]);
+          const gardeningData = await gardeningRes.json();
+          const topTrendingTips = await tipsRes.json();
+          return { gardeningData, topTrendingTips };
         },
-
         Component: Home,
         hydrateFallbackElement: <p> Loading..........</p>,
       },

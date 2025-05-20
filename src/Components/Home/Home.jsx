@@ -7,15 +7,17 @@ import GardeningEvents from "../GardeningEvents/GardeningEvents";
 import { useLoaderData } from "react-router";
 
 const Home = () => {
-  const gardeningData = useLoaderData();
+  const { gardeningData, topTrendingTips } = useLoaderData();
+
   console.log(gardeningData);
+
   return (
-    <div>
-      <BannerSlider></BannerSlider>
-      <FeaturedGardeners gardeningData={gardeningData}></FeaturedGardeners>
-      <TopTrendingTips></TopTrendingTips>
-      <GardeningTools></GardeningTools>
-      <GardeningEvents></GardeningEvents>
+    <div className="">
+      <BannerSlider />
+      <FeaturedGardeners gardeningData={gardeningData} />
+      <TopTrendingTips tips={topTrendingTips} />
+      <GardeningTools />
+      <GardeningEvents />
     </div>
   );
 };

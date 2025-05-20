@@ -1,87 +1,44 @@
 import React from "react";
 
-const gardeners = [
-  {
-    _id: "1",
-    name: "Alice Green",
-    bio: "Loves urban gardening and sustainable practices.",
-    status: "active",
-    profilePic: "https://i.pravatar.cc/150?img=1",
-  },
-  {
-    _id: "2",
-    name: "Bob Bloom",
-    bio: "Expert in flower gardening.",
-    status: "active",
-    profilePic: "https://i.pravatar.cc/150?img=2",
-  },
-  {
-    _id: "3",
-    name: "David Seed",
-    bio: "Tree planting advocate.",
-    status: "active",
-    profilePic: "https://i.pravatar.cc/150?img=3",
-  },
-  {
-    _id: "4",
-    name: "Ella Thorn",
-    bio: "Herb garden enthusiast.",
-    status: "active",
-    profilePic: "https://i.pravatar.cc/150?img=4",
-  },
-  {
-    _id: "5",
-    name: "Grace Sprout",
-    bio: "Community garden organizer.",
-    status: "active",
-    profilePic: "https://i.pravatar.cc/150?img=5",
-  },
-  {
-    _id: "6",
-    name: "Hank Soil",
-    bio: "Soil health expert.",
-    status: "active",
-    profilePic: "https://i.pravatar.cc/150?img=6",
-  },
-  // Assume more gardeners but only active shown
-];
-
 const FeaturedGardeners = ({ gardeningData }) => {
-  console.log(gardeningData);
-  // শুধু active gardeners নিবো
-  const activeGardeners = gardeners
-    .filter((g) => g.status === "active")
-    .slice(0, 6);
-
   return (
-    <div className="max-w-5xl mx-auto py-12 px-4">
-      <h2 className="text-4xl font-extrabold text-green-800 mb-10 text-center">
-        🌿 Featured Gardeners
+    <div className="max-w-6xl mx-auto py-16 px-6">
+      <h2 className="text-4xl font-extrabold text-green-800 text-center mb-12">
+        🌿 Meet Our Featured Gardeners
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
         {gardeningData.map((gardener) => (
           <div
             key={gardener._id}
-            className="bg-gradient-to-tr from-green-100 to-green-200 rounded-3xl p-6 shadow-lg transform transition-transform hover:scale-105 hover:shadow-2xl cursor-pointer"
+            className="bg-white border border-green-100 rounded-2xl p-6 shadow-sm hover:shadow-lg transition-transform transform hover:-translate-y-1 hover:scale-105 duration-300"
           >
+            {/* Avatar */}
             <div className="relative w-28 h-28 mx-auto rounded-full overflow-hidden border-4 border-green-500 shadow-md">
               <img
                 src={gardener.profilePic}
                 alt={gardener.name}
                 className="w-full h-full object-cover"
               />
-              <span className="absolute bottom-2 right-2 bg-green-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-lg">
-                Active
+              <span className="absolute bottom-0 right-0 bg-green-600 text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-sm">
+                {gardener.status}
               </span>
             </div>
 
-            <h3 className="mt-6 text-center text-2xl font-bold text-green-900">
-              {gardener.name}
-            </h3>
-            <p className="mt-2 text-center text-green-800 text-sm leading-relaxed">
-              {gardener.bio}
-            </p>
+            {/* Info */}
+            <div className="text-center mt-6">
+              <h3 className="text-xl font-bold text-green-900">
+                {gardener.name}
+              </h3>
+              <p className="text-sm text-gray-600 mt-2 leading-relaxed px-2">
+                {gardener.bio}
+              </p>
+            </div>
+
+            {/* Divider */}
+            <div className="mt-4 border-t border-gray-200 pt-4 text-center text-sm text-gray-400 italic">
+              Garden Lover 🌱
+            </div>
           </div>
         ))}
       </div>
