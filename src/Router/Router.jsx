@@ -7,15 +7,19 @@ import ShareGardenTip from "../Components/ShareGardenTip/ShareGardenTip";
 import MyTips from "../Components/MyTips/MyTips";
 import SignUp from "../Components/SignUp/SignUp";
 import Login from "../Components/LogIn/LogIn";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
     path: "/",
+
     Component: RootLayout,
 
     children: [
       {
         index: true,
+        loader: () => "http://localhost:3000/gardening",
+
         Component: Home,
         hydrateFallbackElement: <p> Loading..........</p>,
       },
@@ -29,11 +33,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/shareGardenTip",
-        Component: ShareGardenTip,
+        element: (
+          <PrivateRoute>
+            <ShareGardenTip></ShareGardenTip>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/myTips",
-        Component: MyTips,
+        element: (
+          <PrivateRoute>
+            <MyTips></MyTips>
+          </PrivateRoute>
+        ),
       },
 
       {

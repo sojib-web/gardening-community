@@ -14,10 +14,12 @@ import {
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
     });
 
     // Cleanup on unmount
@@ -41,20 +43,19 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  const updateUserProfile = (user, name, photoURL) => {
-    return updateProfile(user, {
-      displayName: name,
-      photoURL: photoURL,
-    });
+  const updateUserProfile = ({ displayName, photoURL }) => {
+    return updateProfile(auth.currentUser, { displayName, photoURL });
   };
 
   const userInfo = {
     user,
+    setUser, // helpful for manual override after profile update
     signUp,
     logIn,
     googleLogin,
     logOut,
     updateUserProfile,
+    loading,
   };
 
   return (

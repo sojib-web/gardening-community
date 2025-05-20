@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
+import { Link, NavLink } from "react-router"; // এখানে ডোম থেকে ইম্পোর্ট
+import Swal from "sweetalert2";
 import logo from "../../assets/logo.png";
 import { AuthContext } from "../../Context/AuthContext";
-import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -28,74 +29,77 @@ const Navbar = () => {
     });
   };
 
+  const navLinkStyle = ({ isActive }) =>
+    isActive
+      ? "text-green-300 font-bold"
+      : "hover:text-green-300 transition duration-200";
+
   return (
     <nav className="bg-green-700 text-white px-6 py-3 flex justify-between items-center shadow-md sticky top-0 z-50">
-      {/* Left: Logo */}
+      {/* Logo */}
       <div className="text-2xl font-bold cursor-pointer select-none">
-        <img src={logo} alt="Logo" className="h-10 w-auto" />
+        <Link to="/">
+          <img src={logo} alt="Logo" className="h-10 w-auto" />
+        </Link>
       </div>
 
-      {/* Center/Right: Links */}
+      {/* Navigation Links */}
       <ul className="hidden md:flex space-x-8 font-semibold">
         <li>
-          <a href="/" className="hover:text-green-300">
+          <NavLink to="/" className={navLinkStyle}>
             Home
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href="/gardenersList" className="hover:text-green-300">
+          <NavLink to="/gardenersList" className={navLinkStyle}>
             Explore Gardeners
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href="/browseTips" className="hover:text-green-300">
+          <NavLink to="/browseTips" className={navLinkStyle}>
             Browse Tips
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href="/shareGardenTip" className="hover:text-green-300">
+          <NavLink to="/shareGardenTip" className={navLinkStyle}>
             Share a Garden Tip
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href="/myTips" className="hover:text-green-300">
+          <NavLink to="/myTips" className={navLinkStyle}>
             My Tips
-          </a>
+          </NavLink>
         </li>
       </ul>
 
-      {/* Right: Login/Signup or User */}
+      {/* Auth Buttons */}
       <div className="relative flex items-center space-x-2">
         {!user ? (
           <>
-            <button>
-              <a
-                href="/login"
-                className="bg-green-500 hover:bg-green-600 px-4 py-1 rounded font-semibold transition"
-              >
-                Login
-              </a>
-            </button>
-            <button>
-              <a
-                href="/signup"
-                className="bg-green-500 hover:bg-green-600 px-4 py-1 rounded font-semibold transition"
-              >
-                SignUp
-              </a>
-            </button>
+            <Link
+              to="/login"
+              className="bg-green-500 hover:bg-green-600 px-4 py-1 rounded font-semibold transition"
+            >
+              Login
+            </Link>
+            <Link
+              to="/signup"
+              className="bg-green-500 hover:bg-green-600 px-4 py-1 rounded font-semibold transition"
+            >
+              SignUp
+            </Link>
           </>
         ) : (
           <div className="flex items-center space-x-2">
             <img
               src={user.photoURL || "https://via.placeholder.com/40"}
-              alt={user.displayName || "User"}
-              className="w-10 h-10 rounded-full border-2 border-white"
+              alt={user.displayName || "User photo"}
               title={user.displayName || "User"}
+              className="w-10 h-10 rounded-full border-2 border-white"
             />
             <button
               onClick={handleLogout}
-              className="bg-red-600 text-white px-3 py-1 rounded shadow-lg hover:bg-red-700 text-sm"
+              className="bg-red-600 text-white px-3 py-1 rounded shadow-lg hover:bg-red-700 text-sm transition"
             >
               Logout
             </button>

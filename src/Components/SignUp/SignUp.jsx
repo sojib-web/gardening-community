@@ -1,10 +1,11 @@
+// @ts-nocheck
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import Swal from "sweetalert2";
 
 const SignUp = () => {
-  const { signUp, googleLogin, updateUserProfile, setUser } =
+  const { user, signUp, googleLogin, updateUserProfile, setUser } =
     useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -12,7 +13,7 @@ const SignUp = () => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
-    const { name, email, password, photo } = Object.fromEntries(
+    const { name, email, password, photoURL } = Object.fromEntries(
       formData.entries()
     );
 
@@ -27,18 +28,10 @@ const SignUp = () => {
 
     signUp(email, password)
       .then((result) => {
-        const user = result.user;
+        setUser(user);
         return updateUserProfile({
           displayName: name,
-          photoURL: photo,
-        }).then(() => {
-          if (setUser) {
-            setUser({
-              ...user,
-              displayName: name,
-              photoURL: photo,
-            });
-          }
+          photoURL: photoURL,
         });
       })
       .then(() => {
@@ -63,7 +56,7 @@ const SignUp = () => {
 
   const handleGoogleLogin = () => {
     googleLogin()
-      .then((result) => {
+      .then(() => {
         Swal.fire({
           icon: "success",
           title: "Google Sign-In Successful!",
