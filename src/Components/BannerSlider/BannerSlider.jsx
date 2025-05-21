@@ -1,20 +1,16 @@
-/* eslint-disable no-unused-vars */
 // @ts-nocheck
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
+import { Player } from "@lottiefiles/react-lottie-player";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import image1 from "../../assets/bg-image.jpg";
-import image2 from "../../assets/bg-image2.jpg";
-import image3 from "../../assets/bg-image 3.jpg";
-
-import sideImage1 from "../../assets/banner 2.png";
-import sideImage2 from "../../assets/banner.png";
+import sideImage1 from "../../assets/Image3.jpg";
+import sideImage2 from "../../assets/cardIamge.jpg";
 import sideImage3 from "../../assets/banner3.png";
+import plantAnimation from "../../assets/Animation - 1747825947923.json"; // Lottie animation JSON
 
 const slides = [
   {
@@ -22,7 +18,6 @@ const slides = [
     title: "Find Professional GREEN GARDENER",
     buttonText: "Contact Now",
     buttonLink: "/contact",
-    bgImage: image1,
     sideImage: sideImage1,
   },
   {
@@ -30,7 +25,6 @@ const slides = [
     title: "Urban Gardening Made Simple",
     buttonText: "Join Us",
     buttonLink: "/register",
-    bgImage: image2,
     sideImage: sideImage2,
   },
   {
@@ -38,92 +32,101 @@ const slides = [
     title: "Your Green Journey Starts Here",
     buttonText: "Explore Tips",
     buttonLink: "/resources",
-    bgImage: image3,
     sideImage: sideImage3,
   },
 ];
 
 const BannerSlider = () => {
   return (
-    <div className="bg-green-900">
-      <div className="w-full mx-auto container h-[65vh] md:h-[85vh] overflow-hidden relative">
+    <section className="relative px-4 md:px-12 lg:px-20 py-10 md:py-16 bg-gradient-to-tr from-emerald-900 via-green-700 to-lime-500">
+      <div className="mx-auto relative overflow-hidden rounded-3xl">
         <Swiper
           modules={[Pagination, Autoplay]}
           pagination={{ clickable: true }}
-          autoplay={{ delay: 5000 }}
+          autoplay={{ delay: 6000, disableOnInteraction: false }}
           loop
-          className="h-full"
+          className="h-full min-h-[480px]"
         >
           {slides.map((slide) => (
             <SwiperSlide key={slide.id}>
-              <div
-                className="relative w-full h-full bg-cover bg-center flex items-center"
-                style={{ backgroundImage: `url(${slide.bgImage})` }}
-              >
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#064e3b]/90 via-black/40 to-transparent" />
+              <div className="relative w-full flex flex-col md:flex-row items-center justify-between gap-8 p-6 md:p-12 pb-16 bg-gradient-to-br from-green-900 via-green-800 to-green-600 rounded-3xl">
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/40 z-10 rounded-3xl" />
 
-                {/* Content */}
-                <div className="relative z-10 w-full px-6 md:px-20">
-                  <div className="grid grid-cols-1 md:grid-cols-2 items-center h-full max-w-7xl mx-auto gap-8">
-                    {/* Left - Animated Text Block with custom rounded corners */}
-                    <motion.div
-                      initial={{ x: -100, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ duration: 0.8 }}
-                      className="bg-white/10 backdrop-blur-md p-8 
-                      rounded-tl-[80px] rounded-br-[80px] 
-                      rounded-tr-md rounded-bl-md 
-                      space-y-6 shadow-lg"
-                    >
-                      <h2 className="text-3xl md:text-5xl font-bold text-white leading-snug drop-shadow-lg">
-                        {slide.title}
-                      </h2>
-                      <motion.a
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        href={slide.buttonLink}
-                        className="inline-block bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg text-white font-semibold shadow-lg transition"
-                      >
-                        {slide.buttonText}
-                      </motion.a>
-                    </motion.div>
+                {/* Left Content */}
+                <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="relative z-20 flex-1 text-white flex flex-col justify-center rounded-2xl 
+                    bg-gradient-to-r from-green-800/90 via-green-700/80 to-green-900/90 shadow-lg backdrop-blur-sm p-6 md:p-10"
+                >
+                  <h2 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight drop-shadow-lg">
+                    {slide.title}
+                  </h2>
+                  <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    href={slide.buttonLink}
+                    className="inline-block bg-gradient-to-r from-lime-400 to-green-600 hover:from-lime-500 hover:to-green-700 
+                      transition text-white font-semibold px-8 py-3 rounded-full shadow-lg"
+                  >
+                    {slide.buttonText}
+                  </motion.a>
+                </motion.div>
 
-                    {/* Right - Animated Image */}
-                    <motion.div
-                      initial={{ x: 100, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ duration: 0.8 }}
-                      className="flex justify-center mt-6 md:mt-0"
-                    >
-                      <img
-                        src={slide.sideImage}
-                        alt="Gardener"
-                        className="w-full max-w-[360px] md:max-w-[480px] object-contain drop-shadow-2xl"
+                {/* Right Image with Lottie */}
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="relative z-20 flex-1 flex justify-center items-center"
+                >
+                  <div className="relative w-60 md:w-80 lg:w-96">
+                    <img
+                      src={slide.sideImage}
+                      alt="Gardener Illustration"
+                      className="w-full h-auto rounded-2xl drop-shadow-2xl object-contain"
+                    />
+                    {/* Lottie Animation Positioned Top-Right */}
+                    <div className="absolute top-0 right-0 z-30 w-24 h-24 md:w-32 md:h-32 pointer-events-none">
+                      <Player
+                        autoplay
+                        loop
+                        src={plantAnimation}
+                        className="w-full h-full"
                       />
-                    </motion.div>
+                    </div>
                   </div>
-                </div>
+                </motion.div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
 
-        {/* Custom Swiper Dots Styling */}
-        <style jsx="true">{`
+        {/* Custom Pagination Dots */}
+        <style jsx>{`
           .swiper-pagination-bullet {
-            background: white;
-            opacity: 0.5;
-            width: 12px;
-            height: 12px;
+            background: #a7f3d0;
+            opacity: 0.6;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin: 0 6px !important;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 6px #a7f3d0;
           }
+
           .swiper-pagination-bullet-active {
-            background: #22c55e; /* Tailwind green-500 */
+            background: #22c55e;
             opacity: 1;
+            width: 14px;
+            height: 14px;
+            box-shadow: 0 0 10px #22c55e;
           }
         `}</style>
       </div>
-    </div>
+    </section>
   );
 };
 

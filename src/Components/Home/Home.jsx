@@ -5,6 +5,7 @@ import TopTrendingTips from "../TopTrendingTips/TopTrendingTips";
 import GardeningTools from "../GardeningTools/GardeningTools";
 import GardeningEvents from "../GardeningEvents/GardeningEvents";
 import { useLoaderData } from "react-router";
+import Demo from "../ExtraComponents/Demo";
 
 const Home = () => {
   const { gardeningData, topTrendingTips } = useLoaderData();
@@ -14,6 +15,7 @@ const Home = () => {
   return (
     <div className="">
       <BannerSlider />
+      <Demo></Demo>
       <FeaturedGardeners gardeningData={gardeningData} />
       <TopTrendingTips tips={topTrendingTips} />
       <GardeningTools />
