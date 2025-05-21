@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
-import { useNavigate } from "react-router"; // React Router v6
+import { useLoaderData, useNavigate } from "react-router";
 
 const tips = [
   {
@@ -30,6 +31,8 @@ const tips = [
 
 const BrowseTips = () => {
   const navigate = useNavigate();
+  const data = useLoaderData();
+  console.log(data);
 
   // Filter only public tips (optional if data already filtered)
   const publicTips = tips.filter((tip) => tip.status === "public");

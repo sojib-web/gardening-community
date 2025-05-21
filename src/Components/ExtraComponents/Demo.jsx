@@ -9,7 +9,7 @@ import { Typewriter } from "react-simple-typewriter";
 const Demo = () => {
   return (
     <div className="bg-green-50 py-16 px-4 md:px-8 relative">
-      <div className="max-w-3xl mx-auto text-center relative">
+      <div className="max-w-3xl mx-auto text-center relative mt-10">
         {/* First Lottie Animation Positioned Top-Right */}
         <div className="absolute -top-10  z-30 w-40 h-40 md:w-32 md:h-32 pointer-events-none">
           <Player

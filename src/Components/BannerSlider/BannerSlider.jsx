@@ -37,7 +37,7 @@ const slides = [
 
 const BannerSlider = () => {
   return (
-    <section className="relative px-4 md:px-12 lg:px-20 py-10 md:py-16 bg-gradient-to-tr from-emerald-900 via-green-700 to-lime-500">
+    <section className="relative bg-green-900 px-4 md:px-12 lg:px-20 py-10 md:py-16 bg-gradient-to-tr from-emerald-900 via-green-700 to-lime-500">
       <div className="mx-auto relative overflow-hidden rounded-3xl">
         <Swiper
           modules={[Pagination, Autoplay]}

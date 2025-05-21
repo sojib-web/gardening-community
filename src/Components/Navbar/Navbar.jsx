@@ -37,7 +37,7 @@ const Navbar = () => {
       : "hover:text-green-300 transition duration-200";
 
   return (
-    <nav className="bg-green-700 text-white px-6 py-3 flex justify-between items-center shadow-md sticky top-0 z-50">
+    <nav className="bg-green-900 text-white px-6 py-3 flex justify-between items-center shadow-md sticky top-0 z-50">
       {/* Logo */}
       <div className="text-2xl font-bold cursor-pointer select-none">
         <Link to="/">
