@@ -9,6 +9,7 @@ import SignUp from "../Components/SignUp/SignUp";
 import Login from "../Components/LogIn/LogIn";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import TopTrendingTips from "../Components/TopTrendingTips/TopTrendingTips";
+import TipDetails from "../Components/TipDetails/TipDetails";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +55,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyTips></MyTips>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/tip-details/:id",
+        element: (
+          <PrivateRoute>
+            <TipDetails></TipDetails>
           </PrivateRoute>
         ),
       },
