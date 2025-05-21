@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 import iamge1 from "../../assets/group2.jpg";
 import iamge2 from "../../assets/Image3.jpg";

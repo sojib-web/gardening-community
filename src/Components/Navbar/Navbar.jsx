@@ -1,11 +1,13 @@
+// @ts-nocheck
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router"; // এখানে ডোম থেকে ইম্পোর্ট
+import { Link, NavLink } from "react-router";
 import Swal from "sweetalert2";
 import logo from "../../assets/logo1.png";
 import { AuthContext } from "../../Context/AuthContext";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  console.log(user);
 
   const handleLogout = () => {
     Swal.fire({
@@ -74,7 +76,22 @@ const Navbar = () => {
 
       {/* Auth Buttons */}
       <div className="relative flex items-center space-x-2">
-        {!user ? (
+        {user?.email ? (
+          <div className="flex items-center space-x-2">
+            <img
+              src={user.photoURL || "https://via.placeholder.com/40"}
+              alt={user.displayName || "User photo"}
+              title={user.displayName || "User"}
+              className="w-10 h-10 rounded-full border-2 border-white object-cover"
+            />
+            <button
+              onClick={handleLogout}
+              className="bg-green-500  px-4 py-1 rounded font-semibold transition"
+            >
+              Logout
+            </button>
+          </div>
+        ) : (
           <>
             <Link
               to="/login"
@@ -89,21 +106,6 @@ const Navbar = () => {
               SignUp
             </Link>
           </>
-        ) : (
-          <div className="flex items-center space-x-2">
-            <img
-              src={user.photoURL || "https://via.placeholder.com/40"}
-              alt={user.displayName || "User photo"}
-              title={user.displayName || "User"}
-              className="w-10 h-10 rounded-full border-2 border-white"
-            />
-            <button
-              onClick={handleLogout}
-              className="bg-red-600 text-white px-3 py-1 rounded shadow-lg hover:bg-red-700 text-sm transition"
-            >
-              Logout
-            </button>
-          </div>
         )}
       </div>
     </nav>

@@ -1,11 +1,13 @@
+/* eslint-disable no-unused-vars */
 // @ts-nocheck
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import Swal from "sweetalert2";
+import { auth } from "../../firebase/Firebase_config";
 
 const SignUp = () => {
-  const { user, signUp, googleLogin, updateUserProfile, setUser } =
+  const { signUp, googleLogin, updateUserProfile, setUser } =
     useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -13,7 +15,7 @@ const SignUp = () => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
-    const { name, email, password, photoURL } = Object.fromEntries(
+    const { name, email, password, photo } = Object.fromEntries(
       formData.entries()
     );
 
@@ -28,10 +30,16 @@ const SignUp = () => {
 
     signUp(email, password)
       .then((result) => {
-        setUser(user);
         return updateUserProfile({
           displayName: name,
-          photoURL: photoURL,
+          photoURL: photo,
+        }).then(() => {
+          const updateUser = {
+            ...auth.currentUser,
+            displayName: name,
+            photoURL: photo,
+          };
+          setUser(updateUser);
         });
       })
       .then(() => {

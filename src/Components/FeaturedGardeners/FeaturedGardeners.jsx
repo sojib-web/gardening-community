@@ -20,7 +20,7 @@ const FeaturedGardeners = ({ gardeningData }) => {
                 alt={gardener.name}
                 className="w-full h-full object-cover"
               />
-              <span className="absolute bottom-0 right-0 bg-green-600 text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-sm">
+              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-green-600 text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-sm">
                 {gardener.status}
               </span>
             </div>
