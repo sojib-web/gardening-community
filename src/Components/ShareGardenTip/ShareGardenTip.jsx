@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
+import Swal from "sweetalert2";
 
 const ShareGardenTip = () => {
-  const [successMsg, setSuccessMsg] = useState("");
-
   const ShareGardenTipSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -21,13 +20,23 @@ const ShareGardenTip = () => {
       .then((data) => {
         console.log(data);
         if (data.insertedId) {
-          setSuccessMsg("Your garden tip was shared successfully!");
           form.reset();
+          Swal.fire({
+            icon: "success",
+            title: "Success!",
+            text: "Your garden tip was shared successfully!",
+            confirmButtonColor: "#166534", // Tailwind green-800
+          });
         }
       })
       .catch((err) => {
         console.error("Error:", err);
-        setSuccessMsg("Failed to share your tip. Please try again.");
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Failed to share your tip. Please try again.",
+          confirmButtonColor: "#b91c1c", // Tailwind red-700
+        });
       });
   };
 
@@ -132,12 +141,6 @@ const ShareGardenTip = () => {
           Submit Tip
         </button>
       </form>
-
-      {successMsg && (
-        <p className="mt-6 text-center text-green-800 font-semibold text-lg">
-          {successMsg}
-        </p>
-      )}
     </section>
   );
 };
