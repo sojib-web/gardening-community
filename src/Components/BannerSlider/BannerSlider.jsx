@@ -3,14 +3,13 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
-import { Player } from "@lottiefiles/react-lottie-player";
+
 import "swiper/css";
 import "swiper/css/pagination";
 
 import sideImage1 from "../../assets/Image3.jpg";
 import sideImage2 from "../../assets/cardIamge.jpg";
 import sideImage3 from "../../assets/banner3.png";
-import plantAnimation from "../../assets/Animation - 1747825947923.json"; // Lottie animation JSON
 
 const slides = [
   {
@@ -88,15 +87,6 @@ const BannerSlider = () => {
                       alt="Gardener Illustration"
                       className="w-full h-auto rounded-2xl drop-shadow-2xl object-contain"
                     />
-                    {/* Lottie Animation Positioned Top-Right */}
-                    <div className="absolute top-0 right-0 z-30 w-24 h-24 md:w-32 md:h-32 pointer-events-none">
-                      <Player
-                        autoplay
-                        loop
-                        src={plantAnimation}
-                        className="w-full h-full"
-                      />
-                    </div>
                   </div>
                 </motion.div>
               </div>
