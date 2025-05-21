@@ -1,67 +1,108 @@
-import React from "react";
-
-const events = [
-  {
-    id: 1,
-    title: "Spring Plant Festival",
-    date: "2025-06-15",
-    location: "Central Park, NY",
-    description: "Join us for a day of planting workshops and plant sales.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=60",
-  },
-  {
-    id: 2,
-    title: "Organic Gardening Workshop",
-    date: "2025-07-10",
-    location: "Community Center, CA",
-    description: "Learn how to grow your garden organically and sustainably.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=400&q=60",
-  },
-  {
-    id: 3,
-    title: "Urban Gardening Meetup",
-    date: "2025-08-05",
-    location: "City Library, TX",
-    description: "Networking event for urban gardeners and enthusiasts.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1465188035480-4ec2920981b1?auto=format&fit=crop&w=400&q=60",
-  },
-];
+import React, { useState } from "react";
+import { CheckCircle } from "lucide-react";
+import image from "../../assets/cardIamge.jpg";
+import imgge2 from "../../assets/Image3.jpg";
 
 const GardeningEvents = () => {
+  const [activeTab, setActiveTab] = useState("tab2");
+
   return (
-    <section className="max-w-4xl mx-auto px-6 py-12">
-      <h2 className="text-3xl font-bold text-green-800 mb-8 text-center">
-        🌿 Upcoming Gardening Events
-      </h2>
-      <ul className="space-y-8">
-        {events.map((event) => (
-          <li
-            key={event.id}
-            className="bg-green-50 rounded-lg p-5 shadow hover:shadow-lg transition-shadow cursor-pointer flex gap-6 items-center"
-          >
+    <section className="bg-green-900 py-16 text-white relative overflow-hidden">
+      <div className="text-center mb-10">
+        <p className="text-yellow-200 font-semibold flex items-center justify-center gap-2">
+          <span className="text-lg">🌿</span> Why Choose Us
+        </p>
+        <h2 className="text-3xl md:text-4xl font-bold mt-2">
+          We’re Awards Winning Gardening
+        </h2>
+      </div>
+
+      <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-center gap-10">
+        <div className="bg-white text-black shadow-xl p-8 w-full rounded-2xl max-w-6xl flex flex-col lg:flex-row items-center gap-10">
+          {/* Right Side Image */}
+          <div className="lg:order-2 w-full lg:w-1/2">
             <img
-              src={event.imageUrl}
-              alt={event.title}
-              className="w-32 h-24 rounded-lg object-cover flex-shrink-0"
+              src={imgge2}
+              alt="Gardening"
+              className="rounded-2xl object-cover w-full h-full max-h-[600px]"
             />
-            <div>
-              <h3 className="text-xl font-semibold text-green-900">
-                {event.title}
-              </h3>
-              <p className="text-green-700 text-sm mb-1">
-                {new Date(event.date).toLocaleDateString()}
-              </p>
-              <p className="text-green-700 text-sm mb-2 italic">
-                {event.location}
-              </p>
-              <p className="text-green-800">{event.description}</p>
+          </div>
+
+          {/* Left Side Content */}
+          <div className="lg:order-1 w-full lg:w-1/2">
+            {/* Tabs */}
+            <div className="flex gap-6 border-b border-gray-300 mb-6">
+              <button
+                onClick={() => setActiveTab("tab1")}
+                className={`pb-2 border-b-2 ${
+                  activeTab === "tab1"
+                    ? "border-green-600 text-green-700 font-bold"
+                    : "border-transparent text-gray-600 hover:text-green-700 hover:border-green-600"
+                }`}
+              >
+                We’re Since 1987!
+              </button>
+              <button
+                onClick={() => setActiveTab("tab2")}
+                className={`pb-2 border-b-2 ${
+                  activeTab === "tab2"
+                    ? "border-green-600 text-green-700 font-bold"
+                    : "border-transparent text-gray-600 hover:text-green-700 hover:border-green-600"
+                }`}
+              >
+                Philosophy
+              </button>
             </div>
-          </li>
-        ))}
-      </ul>
+
+            {/* Tab Content */}
+            <div className="mb-6 text-gray-700">
+              {activeTab === "tab1" && (
+                <div>
+                  Sed ut perspiciatis unde omnis natus error voluptatem
+                  accusantium doloremque laudantium, totam rem aperia eaque quae
+                  ab illo inventore veritatis architecto beatae vitae dicta sunt
+                  explicabo.
+                </div>
+              )}
+              {activeTab === "tab2" && (
+                <div>
+                  Sed ut perspiciatis unde omnis natus error voluptatem
+                  accusantium doloremque laudantium, totam rem aperia eaque quae
+                  ab illo inventore veritatis architecto beatae vitae dicta sunt
+                  explicabo.
+                </div>
+              )}
+            </div>
+
+            {/* Features List */}
+            <div className="flex items-start gap-4">
+              <img
+                src={image}
+                alt="Gardener"
+                className="rounded-lg object-cover w-30 "
+              />
+              <ul className="text-sm space-y-3 text-black">
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="text-green-600 w-4 h-4" /> Trusted
+                  Gardening Partners
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="text-green-600 w-4 h-4" /> Shipping
+                  Cost Low
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="text-green-600 w-4 h-4" />{" "}
+                  Professional Team Member
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="text-green-600 w-4 h-4" /> Awards
+                  Winning Company
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
