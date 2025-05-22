@@ -30,8 +30,9 @@ const Login = () => {
       .catch((error) => {
         Swal.fire({
           icon: "error",
-          title: "Oops...",
-          text: error.message,
+          title: "Something Went Wrong!",
+          text: "We couldn't log you in. Try again later.",
+          confirmButtonColor: "#16a34a",
         });
       });
   };

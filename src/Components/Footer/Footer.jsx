@@ -25,18 +25,23 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link to="/forum" className="hover:underline">
-                Forum
+              <Link to="/gardenersList" className="hover:underline">
+                Explore Gardeners
               </Link>
             </li>
             <li>
-              <Link to="/events" className="hover:underline">
-                Events
+              <Link to="/browseTips" className="hover:underline">
+                Browse Tips
               </Link>
             </li>
             <li>
-              <Link to="/resources" className="hover:underline">
-                Resources
+              <Link to="/shareGardenTip" className="hover:underline">
+                Share a Garden Tip
+              </Link>
+            </li>
+            <li>
+              <Link to="/myTips" className="hover:underline">
+                My Tips
               </Link>
             </li>
           </ul>
