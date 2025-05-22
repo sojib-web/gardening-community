@@ -20,7 +20,7 @@ const Demo = () => {
           />
         </div>
         {/* Typewriter effect in heading */}
-        <h1 className="text-4xl md:text-5xl font-bold text-green-800 mb-4">
+        <h1 className="text-sm lg:text-4xl md:text-3xl font-bold text-green-800 mb-4">
           <Typewriter
             words={["Welcome to Real Garden"]}
             loop={false}
@@ -33,7 +33,7 @@ const Demo = () => {
         </h1>
 
         {/* Second Lottie Animation Positioned a bit left of the first one */}
-        <div className="absolute -top-10 -right-10 z-30 w-40 h-40 md:w-32 md:h-32 pointer-events-none">
+        <div className="absolute  -top-10 -right-10 z-30 w-40 h-40 md:w-32 md:h-32 pointer-events-none">
           <Player
             autoplay
             loop
@@ -42,7 +42,7 @@ const Demo = () => {
           />
         </div>
 
-        <h3 className="text-xl md:text-2xl text-green-700 font-medium mb-6">
+        <h3 className="text-sm md:text-2xl text-green-700 font-medium mb-6">
           We are passionate about creating the perfect landscape of your dreams
         </h3>
 

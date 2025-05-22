@@ -5,6 +5,7 @@ import { useLoaderData, useNavigate } from "react-router";
 const BrowseTips = () => {
   const navigate = useNavigate();
   const BrowseData = useLoaderData();
+
   console.log(BrowseData);
 
   const handleSeeMore = (id) => {

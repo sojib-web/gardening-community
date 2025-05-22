@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React, { useContext } from "react";
-import { Navigate, useLocation } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
+import { Navigate, useLocation } from "react-router";
 import Loader from "../Components/Loader/Loader";
 
 const PrivateRoute = ({ children }) => {
@@ -9,11 +9,11 @@ const PrivateRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading) {
-    return <Loader></Loader>;
+    return <Loader />;
   }
 
-  if (!user) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+  if (!user || !user?.email) {
+    return <Navigate to="/login" state={location.pathname} replace />;
   }
 
   return children;

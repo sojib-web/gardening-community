@@ -41,7 +41,7 @@ const ShareGardenTip = () => {
   };
 
   return (
-    <section className="max-w-3xl mx-auto p-8 my-12 bg-gradient-to-tr from-green-50 to-green-100 rounded-2xl shadow-xl border border-green-300">
+    <section className="max-w-3xl mx-auto p-8 my-12 ">
       <h2 className="text-4xl font-extrabold text-green-800 text-center mb-8 tracking-wide drop-shadow-md">
         🌿 Share a Garden Tip
       </h2>

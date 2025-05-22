@@ -8,7 +8,7 @@ const GardeningEvents = () => {
   const [activeTab, setActiveTab] = useState("tab2");
 
   return (
-    <section className="bg-green-900 py-16 text-white relative overflow-hidden">
+    <section className="bg-green-900 mt-20 py-16 text-white relative overflow-hidden">
       <div className="text-center mb-10">
         <p className="text-yellow-200 font-semibold flex items-center justify-center gap-2">
           <span className="text-lg">🌿</span> Why Choose Us

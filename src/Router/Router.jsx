@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createBrowserRouter } from "react-router";
 import Home from "../Components/Home/Home";
 import RootLayout from "../RootLayout/RootLayout";
@@ -12,6 +13,7 @@ import TopTrendingTips from "../Components/TopTrendingTips/TopTrendingTips";
 import TipDetails from "../Components/TipDetails/TipDetails";
 import UpdateTip from "../Components/UpdateTip/UpdateTip";
 import NotFound from "../Components/NotFound/NotFound";
+import Loader from "../Components/Loader/Loader";
 
 export const router = createBrowserRouter([
   {
@@ -30,7 +32,7 @@ export const router = createBrowserRouter([
           return { gardeningData, topTrendingTips };
         },
         Component: Home,
-        hydrateFallbackElement: <p> Loading..........</p>,
+        hydrateFallbackElement: Loader,
       },
       {
         path: "/gardenersList",
