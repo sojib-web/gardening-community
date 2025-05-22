@@ -74,6 +74,7 @@ export const router = createBrowserRouter([
             <MyTips />
           </PrivateRoute>
         ),
+        hydrateFallbackElement: <Loader />,
       },
       {
         path: "/tip-details/:id",
