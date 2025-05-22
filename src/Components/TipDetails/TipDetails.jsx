@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import Loader from "../Loader/Loader";
 
 const TipDetails = () => {
   const { id } = useParams();
@@ -26,11 +27,7 @@ const TipDetails = () => {
   };
 
   if (loading) {
-    return (
-      <div className="text-center text-green-700 py-20 text-xl font-semibold">
-        Loading Tip Details...
-      </div>
-    );
+    return <Loader></Loader>;
   }
 
   return (

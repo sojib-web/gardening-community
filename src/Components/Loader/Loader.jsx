@@ -1,12 +1,16 @@
 import React from "react";
+import { FaLeaf } from "react-icons/fa";
 
 const Loader = () => {
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="relative w-20 h-20">
-        <div className="absolute inset-0 rounded-full border-4 border-t-green-500 border-b-transparent animate-spin"></div>
-        <div className="absolute inset-2 rounded-full border-4 border-l-green-400 border-r-transparent animate-spin-slow"></div>
+    <div className="flex flex-col justify-center items-center min-h-screen gap-4 text-green-600">
+      <div className="relative w-24 h-24">
+        <div className="absolute inset-0 rounded-full border-4 border-green-500 border-t-transparent animate-spin"></div>
+        <div className="absolute inset-4 flex justify-center items-center">
+          <FaLeaf className="text-4xl animate-bounce text-green-600" />
+        </div>
       </div>
+      <p className="text-lg font-semibold">Loading your garden...</p>
     </div>
   );
 };

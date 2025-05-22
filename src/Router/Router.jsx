@@ -37,8 +37,9 @@ export const router = createBrowserRouter([
           return { gardeningData, topTrendingTips };
         },
         Component: Home,
-        hydrateFallbackElement: Loader,
+        hydrateFallbackElement: <Loader />,
       },
+
       {
         path: "/gardenersList",
         Component: GardenersList,
