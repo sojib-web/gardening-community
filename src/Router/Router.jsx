@@ -10,13 +10,13 @@ import Login from "../Components/LogIn/LogIn";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import TopTrendingTips from "../Components/TopTrendingTips/TopTrendingTips";
 import TipDetails from "../Components/TipDetails/TipDetails";
+import UpdateTip from "../Components/UpdateTip/UpdateTip";
+import NotFound from "../Components/NotFound/NotFound";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-
     Component: RootLayout,
-
     children: [
       {
         index: true,
@@ -46,15 +46,16 @@ export const router = createBrowserRouter([
         path: "/shareGardenTip",
         element: (
           <PrivateRoute>
-            <ShareGardenTip></ShareGardenTip>
+            <ShareGardenTip />
           </PrivateRoute>
         ),
       },
       {
         path: "/myTips",
+        loader: () => fetch("http://localhost:3000/share-garden-tip"),
         element: (
           <PrivateRoute>
-            <MyTips></MyTips>
+            <MyTips />
           </PrivateRoute>
         ),
       },
@@ -62,11 +63,20 @@ export const router = createBrowserRouter([
         path: "/tip-details/:id",
         element: (
           <PrivateRoute>
-            <TipDetails></TipDetails>
+            <TipDetails />
           </PrivateRoute>
         ),
       },
-
+      {
+        path: "/update-tip/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateTip />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/share-garden-tip/${params.id}`),
+      },
       {
         path: "signup",
         Component: SignUp,
@@ -74,6 +84,10 @@ export const router = createBrowserRouter([
       {
         path: "login",
         Component: Login,
+      },
+      {
+        path: "*",
+        Component: NotFound,
       },
     ],
   },
