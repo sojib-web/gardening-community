@@ -1,12 +1,14 @@
 // @ts-nocheck
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router";
 import Swal from "sweetalert2";
 import logo from "../../assets/logo1.png";
 import { AuthContext } from "../../Context/AuthContext";
+import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = () => {
     Swal.fire({
@@ -36,77 +38,150 @@ const Navbar = () => {
       : "hover:text-green-300 transition duration-200";
 
   return (
-    <nav className="bg-green-900 text-white px-6 py-3 flex justify-between items-center shadow-md sticky top-0 z-50">
-      {/* Logo */}
-      <div className="text-2xl font-bold cursor-pointer select-none">
+    <nav className="bg-green-900 text-white px-6 py-3 shadow-md sticky top-0 z-50">
+      <div className="flex justify-between items-center">
+        {/* Logo */}
         <Link to="/">
           <img src={logo} alt="Logo" className="h-10 w-auto" />
         </Link>
+
+        {/* Hamburger Menu Button (Mobile) */}
+        <div className="md:hidden">
+          <button onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
+
+        {/* Desktop Navigation Links */}
+        <ul className="hidden md:flex space-x-6 font-semibold">
+          <li>
+            <NavLink to="/" className={navLinkStyle}>
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/gardenersList" className={navLinkStyle}>
+              Explore Gardeners
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/browseTips" className={navLinkStyle}>
+              Browse Tips
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/shareGardenTip" className={navLinkStyle}>
+              Share a Garden Tip
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/myTips" className={navLinkStyle}>
+              My Tips
+            </NavLink>
+          </li>
+        </ul>
+
+        {/* Auth Buttons */}
+        <div className="hidden md:flex items-center space-x-2">
+          {user?.email ? (
+            <>
+              <img
+                src={user.photoURL || "https://via.placeholder.com/40"}
+                alt={user.displayName || "User photo"}
+                title={user.displayName || "User"}
+                className="w-10 h-10 rounded-full border-2 border-white object-cover"
+              />
+              <button
+                onClick={handleLogout}
+                className="bg-green-500 px-4 py-1 rounded font-semibold transition"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="bg-green-500 hover:bg-green-600 px-4 py-1 rounded font-semibold transition"
+              >
+                Login
+              </Link>
+              <Link
+                to="/signup"
+                className="bg-green-500 hover:bg-green-600 px-4 py-1 rounded font-semibold transition"
+              >
+                SignUp
+              </Link>
+            </>
+          )}
+        </div>
       </div>
 
-      {/* Navigation Links */}
-      <ul className="hidden md:flex space-x-8 font-semibold">
-        <li>
-          <NavLink to="/" className={navLinkStyle}>
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/gardenersList" className={navLinkStyle}>
-            Explore Gardeners
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/browseTips" className={navLinkStyle}>
-            Browse Tips
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/shareGardenTip" className={navLinkStyle}>
-            Share a Garden Tip
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/myTips" className={navLinkStyle}>
-            My Tips
-          </NavLink>
-        </li>
-      </ul>
-
-      {/* Auth Buttons */}
-      <div className="relative flex items-center space-x-2">
-        {user?.email ? (
-          <div className="flex items-center space-x-2">
-            <img
-              src={user.photoURL || "https://via.placeholder.com/40"}
-              alt={user.displayName || "User photo"}
-              title={user.displayName || "User"}
-              className="w-10 h-10 rounded-full border-2 border-white object-cover"
-            />
-            <button
-              onClick={handleLogout}
-              className="bg-green-500  px-4 py-1 rounded font-semibold transition"
-            >
-              Logout
-            </button>
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className="md:hidden mt-4 space-y-2">
+          <ul className="flex flex-col space-y-2 font-semibold">
+            <li>
+              <NavLink to="/" className={navLinkStyle}>
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/gardenersList" className={navLinkStyle}>
+                Explore Gardeners
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/browseTips" className={navLinkStyle}>
+                Browse Tips
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/shareGardenTip" className={navLinkStyle}>
+                Share a Garden Tip
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/myTips" className={navLinkStyle}>
+                My Tips
+              </NavLink>
+            </li>
+          </ul>
+          <div className="mt-2">
+            {user?.email ? (
+              <div className="flex items-center space-x-2">
+                <img
+                  src={user.photoURL || "https://via.placeholder.com/40"}
+                  alt={user.displayName || "User photo"}
+                  title={user.displayName || "User"}
+                  className="w-10 h-10 rounded-full border-2 border-white object-cover"
+                />
+                <button
+                  onClick={handleLogout}
+                  className="bg-green-500 px-4 py-1 rounded font-semibold transition"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <div className="flex flex-col space-y-2">
+                <Link
+                  to="/login"
+                  className="bg-green-500 hover:bg-green-600 px-4 py-1 rounded font-semibold transition"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/signup"
+                  className="bg-green-500 hover:bg-green-600 px-4 py-1 rounded font-semibold transition"
+                >
+                  SignUp
+                </Link>
+              </div>
+            )}
           </div>
-        ) : (
-          <>
-            <Link
-              to="/login"
-              className="bg-green-500 hover:bg-green-600 px-4 py-1 rounded font-semibold transition"
-            >
-              Login
-            </Link>
-            <Link
-              to="/signup"
-              className="bg-green-500 hover:bg-green-600 px-4 py-1 rounded font-semibold transition"
-            >
-              SignUp
-            </Link>
-          </>
-        )}
-      </div>
+        </div>
+      )}
     </nav>
   );
 };
