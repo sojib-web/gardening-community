@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Context/AuthContext";
@@ -8,6 +8,7 @@ const Login = () => {
   const { logIn, googleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -45,7 +46,7 @@ const Login = () => {
           timer: 1800,
           showConfirmButton: false,
         });
-        navigate(location?.state || " /");
+        navigate(location?.state || "/");
       })
       .catch((error) => {
         Swal.fire({
@@ -57,7 +58,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center  px-4">
+    <div className="min-h-screen flex items-center justify-center px-4">
       <div className="bg-white shadow-2xl rounded-3xl p-10 max-w-md w-full relative">
         <div className="absolute -top-12 left-1/2 transform -translate-x-1/2">
           <div className="w-24 h-24 rounded-full bg-green-500 text-white text-3xl font-bold flex items-center justify-center shadow-xl border-4 border-white">
@@ -82,17 +83,26 @@ const Login = () => {
           </div>
           <div>
             <label className="text-sm text-gray-600">Password</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="••••••••"
-              className="w-full p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="••••••••"
+                className="w-full p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 pr-12"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-sm text-gray-600"
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
           </div>
           <button
             type="submit"
-            className="w-full bg-green-600 text-white py-3 rounded-xl hover:bg-green-700 transition-all  "
+            className="w-full bg-green-600 text-white py-3 rounded-xl hover:bg-green-700 transition-all"
           >
             Login
           </button>
@@ -121,7 +131,7 @@ const Login = () => {
           Don’t have an account?{" "}
           <Link
             to="/signup"
-            className="text-green-600  font-semibold hover:underline"
+            className="text-green-600 font-semibold hover:underline"
           >
             Register here
           </Link>

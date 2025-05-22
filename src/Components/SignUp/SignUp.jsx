@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 // @ts-nocheck
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import Swal from "sweetalert2";
@@ -10,6 +10,7 @@ const SignUp = () => {
   const { signUp, googleLogin, updateUserProfile, setUser } =
     useContext(AuthContext);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleFormSubmitWithSignUp = (e) => {
     e.preventDefault();
@@ -19,17 +20,18 @@ const SignUp = () => {
       formData.entries()
     );
 
-    if (password.length < 6) {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/;
+    if (!passwordRegex.test(password)) {
       Swal.fire({
         icon: "warning",
         title: "Weak Password",
-        text: "Password must be at least 6 characters long.",
+        text: "Password must be 8+ chars, with 1 uppercase, 1 lowercase, and 1 special character",
       });
       return;
     }
 
     signUp(email, password)
-      .then((result) => {
+      .then(() => {
         return updateUserProfile({
           displayName: name,
           photoURL: photo,
@@ -82,7 +84,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center  px-4">
+    <div className="min-h-screen flex items-center justify-center px-4">
       <div className="bg-white p-10 rounded-3xl shadow-2xl max-w-md w-full relative">
         <div className="absolute -top-12 left-1/2 transform -translate-x-1/2">
           <div className="w-24 h-24 rounded-full bg-green-500 text-white text-3xl font-bold flex items-center justify-center shadow-xl border-4 border-white">
@@ -127,13 +129,22 @@ const SignUp = () => {
           </div>
           <div>
             <label className="text-sm text-gray-600">Password</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="••••••••"
-              className="w-full p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-              required
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="••••••••"
+                className="w-full p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 pr-12"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-sm text-gray-600"
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
           </div>
 
           <button

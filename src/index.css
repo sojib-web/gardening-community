@@ -1,0 +1,19 @@
+body {
+  background-color: white;
+  color: black;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+body.dark .bg-green-900 {
+  background-color: #1f2937 !important; /* A dark background fallback for your navbar */
+}
+
+body.dark a:hover,
+body.dark .text-green-300 {
+  color: #bbf7d0; /* Lighter green for dark mode */
+}
