@@ -1,22 +1,51 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData, useNavigate } from "react-router";
 
 const BrowseTips = () => {
   const navigate = useNavigate();
   const BrowseData = useLoaderData();
 
-  console.log(BrowseData);
+  const [selectedDifficulty, setSelectedDifficulty] = useState("");
+  const [filteredData, setFilteredData] = useState(BrowseData);
 
   const handleSeeMore = (id) => {
     navigate(`/tip-details/${id}`);
   };
 
+  const handleDifficultyChange = (e) => {
+    const difficulty = e.target.value;
+    setSelectedDifficulty(difficulty);
+
+    if (difficulty === "") {
+      setFilteredData(BrowseData);
+    } else {
+      const filtered = BrowseData.filter(
+        (tip) => tip.difficulty === difficulty
+      );
+      setFilteredData(filtered);
+    }
+  };
+
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h2 className="text-4xl font-extrabold text-green-800 text-center mb-12">
+      <h2 className="text-4xl font-extrabold text-green-800 text-center mb-10">
         🌿 Browse Gardening Tips
       </h2>
+
+      {/* Filter Dropdown */}
+      <div className="mb-6 flex justify-end">
+        <select
+          value={selectedDifficulty}
+          onChange={handleDifficultyChange}
+          className="px-4 py-2 border border-green-400 rounded-lg shadow text-green-800 font-medium"
+        >
+          <option value="">All Difficulties</option>
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+          <option value="Hard">Hard</option>
+        </select>
+      </div>
 
       <div className="overflow-x-auto rounded-2xl shadow-2xl border border-green-200">
         <table className="min-w-full bg-white rounded-2xl overflow-hidden">
@@ -28,6 +57,9 @@ const BrowseTips = () => {
               <th className="py-4 px-6 bg-green-200 text-left text-lg text-green-900 font-bold">
                 Category
               </th>
+              <th className="py-4 px-6 bg-green-200 text-left text-lg text-green-900 font-bold">
+                Difficulty
+              </th>
               <th className="py-4 px-6 bg-green-200 text-center text-lg text-green-900 font-bold">
                 Image
               </th>
@@ -37,7 +69,7 @@ const BrowseTips = () => {
             </tr>
           </thead>
           <tbody>
-            {BrowseData.map((tip, index) => (
+            {filteredData.map((tip, index) => (
               <tr
                 key={tip._id}
                 className={`${
@@ -50,6 +82,7 @@ const BrowseTips = () => {
                 <td className="py-4 px-6 text-green-700 italic">
                   {tip.category}
                 </td>
+                <td className="py-4 px-6 text-green-700">{tip.difficulty}</td>
                 <td className="py-4 px-6 text-center">
                   <img
                     src={tip.imageUrl}
@@ -83,6 +116,12 @@ const BrowseTips = () => {
             ))}
           </tbody>
         </table>
+
+        {filteredData.length === 0 && (
+          <p className="text-center py-6 text-red-600 font-semibold">
+            No tips found for the selected difficulty.
+          </p>
+        )}
       </div>
     </section>
   );
