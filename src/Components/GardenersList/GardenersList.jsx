@@ -4,7 +4,7 @@ import GardenerCard from "./GardenerCard";
 
 const GardenersList = () => {
   const gardeners = useLoaderData();
-  console.log(gardeners);
+
   return (
     <section className=" min-h-screen py-16 px-6">
       <h2 className="text-5xl font-extrabold text-center mb-16 text-green-900 tracking-wide">

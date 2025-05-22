@@ -48,7 +48,7 @@ const SignUp = () => {
         Swal.fire({
           icon: "success",
           title: "Registration Successful!",
-          text: "Welcome aboard! 🎉",
+          text: "Welcome Garden Connect! 🎉",
           timer: 2000,
           showConfirmButton: false,
         });

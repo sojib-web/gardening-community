@@ -1,21 +1,27 @@
 import React from "react";
+import { useLoaderData } from "react-router";
 import BannerSlider from "../BannerSlider/BannerSlider";
 import FeaturedGardeners from "../FeaturedGardeners/FeaturedGardeners";
 import TopTrendingTips from "../TopTrendingTips/TopTrendingTips";
 import GardeningTools from "../GardeningTools/GardeningTools";
 import GardeningEvents from "../GardeningEvents/GardeningEvents";
-import { useLoaderData } from "react-router";
 import Demo from "../ExtraComponents/Demo";
+import Loader from "../Loader/Loader"; // ✅ import your spinner
 
 const Home = () => {
-  const { gardeningData, topTrendingTips } = useLoaderData();
+  const data = useLoaderData();
 
-  console.log(gardeningData);
+  // ✅ Show loader while data is loading
+  if (!data?.gardeningData || !data?.topTrendingTips) {
+    return <Loader />;
+  }
+
+  const { gardeningData, topTrendingTips } = data;
 
   return (
-    <div className="">
+    <div>
       <BannerSlider />
-      <Demo></Demo>
+      <Demo />
       <FeaturedGardeners gardeningData={gardeningData} />
       <TopTrendingTips tips={topTrendingTips} />
       <GardeningTools />

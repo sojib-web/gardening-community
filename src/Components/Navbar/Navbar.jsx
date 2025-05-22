@@ -7,7 +7,6 @@ import { AuthContext } from "../../Context/AuthContext";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  console.log(user);
 
   const handleLogout = () => {
     Swal.fire({

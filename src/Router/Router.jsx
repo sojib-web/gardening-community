@@ -19,13 +19,18 @@ export const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
+    errorElement: <NotFound />,
     children: [
       {
         index: true,
         loader: async () => {
           const [gardeningRes, tipsRes] = await Promise.all([
-            fetch("http://localhost:3000/gardening"),
-            fetch("http://localhost:3000/top-trending-tips"),
+            fetch(
+              "https://gardening-community-server-plum.vercel.app/gardening"
+            ),
+            fetch(
+              "https://gardening-community-server-plum.vercel.app/top-trending-tips"
+            ),
           ]);
           const gardeningData = await gardeningRes.json();
           const topTrendingTips = await tipsRes.json();
@@ -37,12 +42,17 @@ export const router = createBrowserRouter([
       {
         path: "/gardenersList",
         Component: GardenersList,
-        loader: () => fetch("http://localhost:3000/gardening"),
+        loader: () =>
+          fetch("https://gardening-community-server-plum.vercel.app/gardening"),
       },
       {
         path: "/browseTips",
-        loader: () => fetch("http://localhost:3000/share-garden-tip"),
+        loader: () =>
+          fetch(
+            "https://gardening-community-server-plum.vercel.app/share-garden-tip"
+          ),
         Component: BrowseTips,
+        hydrateFallbackElement: Loader,
       },
       {
         path: "/shareGardenTip",
@@ -54,7 +64,10 @@ export const router = createBrowserRouter([
       },
       {
         path: "/myTips",
-        loader: () => fetch("http://localhost:3000/share-garden-tip"),
+        loader: () =>
+          fetch(
+            "https://gardening-community-server-plum.vercel.app/share-garden-tip"
+          ),
         element: (
           <PrivateRoute>
             <MyTips />
@@ -77,7 +90,9 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/share-garden-tip/${params.id}`),
+          fetch(
+            `https://gardening-community-server-plum.vercel.app/share-garden-tip/${params.id}`
+          ),
       },
       {
         path: "signup",
