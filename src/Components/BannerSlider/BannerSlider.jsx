@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // @ts-nocheck
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -95,26 +96,27 @@ const BannerSlider = () => {
         </Swiper>
 
         {/* Custom Pagination Dots */}
-        <style jsx>{`
-          .swiper-pagination-bullet {
-            background: #a7f3d0;
-            opacity: 0.6;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin: 0 6px !important;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 6px #a7f3d0;
-          }
+        {/* Custom Pagination Dots */}
+        <style>{`
+  .swiper-pagination-bullet {
+    background: #a7f3d0;
+    opacity: 0.6;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 6px !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 6px #a7f3d0;
+  }
 
-          .swiper-pagination-bullet-active {
-            background: #22c55e;
-            opacity: 1;
-            width: 14px;
-            height: 14px;
-            box-shadow: 0 0 10px #22c55e;
-          }
-        `}</style>
+  .swiper-pagination-bullet-active {
+    background: #22c55e;
+    opacity: 1;
+    width: 14px;
+    height: 14px;
+    box-shadow: 0 0 10px #22c55e;
+  }
+`}</style>
       </div>
     </section>
   );

@@ -59,18 +59,24 @@ const GardeningEvents = () => {
             <div className="mb-6 text-gray-700">
               {activeTab === "tab1" && (
                 <div>
-                  Sed ut perspiciatis unde omnis natus error voluptatem
-                  accusantium doloremque laudantium, totam rem aperia eaque quae
-                  ab illo inventore veritatis architecto beatae vitae dicta sunt
-                  explicabo.
+                  At <span className=" text-green-700 ">Garden Connects</span>,
+                  we’ve been nurturing nature since 1987! With over three
+                  decades of experience, we specialize in creating beautiful,
+                  sustainable gardens that thrive. Whether you're looking for
+                  expert landscaping, seasonal planting, or garden maintenance,
+                  our dedicated team brings passion, knowledge, and a green
+                  thumb to every project.
                 </div>
               )}
               {activeTab === "tab2" && (
                 <div>
-                  Sed ut perspiciatis unde omnis natus error voluptatem
-                  accusantium doloremque laudantium, totam rem aperia eaque quae
-                  ab illo inventore veritatis architecto beatae vitae dicta sunt
-                  explicabo.
+                  At <span className=" text-green-700 ">Garden Connects</span>,
+                  we believe gardening is more than just planting—it's about
+                  cultivating life, harmony, and lasting beauty. Since 1987, our
+                  philosophy has been rooted in respect for nature,
+                  sustainability, and the joy of growing. We see every garden as
+                  a living canvas, shaped by the seasons and the soul of those
+                  who tend it.
                 </div>
               )}
             </div>
