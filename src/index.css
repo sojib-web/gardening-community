@@ -1,0 +1,5 @@
+@layer base {
+  html {
+    --color-base-100: #ffffff !important; /* অথবা তোমার পছন্দ মতো কালার */
+  }
+}

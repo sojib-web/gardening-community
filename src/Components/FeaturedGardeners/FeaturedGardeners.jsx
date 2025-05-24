@@ -3,7 +3,7 @@ import React from "react";
 const FeaturedGardeners = ({ gardeningData }) => {
   return (
     <div className="max-w-6xl mx-auto py-16 px-6">
-      <h2 className="text-4xl font-extrabold text-green-800 text-center mb-12">
+      <h2 className="text-4xl font-extrabold text-white text-center mb-12">
         🌿 Meet Our Featured Gardeners
       </h2>
 

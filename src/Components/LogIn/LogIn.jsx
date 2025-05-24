@@ -78,7 +78,7 @@ const Login = () => {
               type="email"
               name="email"
               placeholder="you@example.com"
-              className="w-full p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full text-gray-600 p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
@@ -89,7 +89,7 @@ const Login = () => {
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="••••••••"
-                className="w-full p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 pr-12"
+                className="w-full text-gray-600 p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 pr-12"
                 required
               />
               <button
@@ -128,7 +128,7 @@ const Login = () => {
           </button>
         </div>
 
-        <p className="mt-6 text-center text-sm">
+        <p className="mt-6 text-center text-gray-600 text-sm">
           Don’t have an account?{" "}
           <Link
             to="/signup"

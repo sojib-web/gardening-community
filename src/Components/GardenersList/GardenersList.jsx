@@ -7,7 +7,7 @@ const GardenersList = () => {
 
   return (
     <section className=" min-h-screen py-16 px-6">
-      <h2 className="text-5xl font-extrabold text-center mb-16 text-green-900 tracking-wide">
+      <h2 className="text-5xl font-extrabold text-center mb-16 text-white tracking-wide">
         Explore Gardeners
       </h2>
 

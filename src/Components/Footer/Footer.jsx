@@ -1,13 +1,19 @@
 import React from "react";
 import { Link } from "react-router";
 import { Facebook, Instagram, Twitter } from "lucide-react";
+import logo from "../../assets/logo1.png"; // ✅ ensure file exists
 
 const Footer = () => {
   return (
-    <footer className="bg-green-800 text-white py-8 mt-10">
+    <footer className="bg-green-900 text-white py-8 mt-10">
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Logo & Description */}
         <div>
+          <img
+            src={logo}
+            alt="GardenConnect Logo"
+            className="w-32 h-auto mb-3 rounded-xl shadow-lg"
+          />
           <h2 className="text-2xl font-bold mb-2">GardenConnect</h2>
           <p className="text-sm">
             A community hub for gardening lovers. Share tips, find local events,

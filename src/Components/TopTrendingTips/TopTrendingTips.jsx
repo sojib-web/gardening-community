@@ -4,10 +4,10 @@ const TopTrendingTips = ({ tips }) => {
   return (
     <div className="max-w-6xl mx-auto py-14 px-4">
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-green-900 mb-2">
+        <h2 className="text-4xl font-bold text-white mb-2">
           🌿 Top Trending Gardening Tips
         </h2>
-        <p className="text-green-600 text-sm max-w-xl mx-auto">
+        <p className="text-white text-sm max-w-xl mx-auto">
           Discover the most effective gardening tips handpicked from expert
           gardeners to transform your outdoor space.
         </p>

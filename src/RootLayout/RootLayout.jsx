@@ -6,7 +6,7 @@ import Footer from "../Components/Footer/Footer";
 
 const RootLayout = () => {
   return (
-    <div>
+    <div className="bg-green-800">
       <Navbar user={undefined} onLogout={undefined}></Navbar>
       <Outlet></Outlet>
       <Footer></Footer>

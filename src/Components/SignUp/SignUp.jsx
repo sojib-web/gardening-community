@@ -103,7 +103,7 @@ const SignUp = () => {
               type="text"
               name="name"
               placeholder="Your name"
-              className="w-full p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full text-gray-600 p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
               required
             />
           </div>
@@ -113,7 +113,7 @@ const SignUp = () => {
               type="email"
               name="email"
               placeholder="you@example.com"
-              className="w-full p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full text-gray-600 p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
               required
             />
           </div>
@@ -123,7 +123,7 @@ const SignUp = () => {
               type="text"
               name="photo"
               placeholder="https://your-image.jpg"
-              className="w-full p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full p-3 mt-1 border text-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
               required
             />
           </div>
@@ -134,7 +134,7 @@ const SignUp = () => {
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="••••••••"
-                className="w-full p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 pr-12"
+                className="w-full text-gray-600 p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 pr-12"
                 required
               />
               <button
@@ -174,7 +174,7 @@ const SignUp = () => {
           </button>
         </div>
 
-        <p className="mt-6 text-center text-sm">
+        <p className="mt-6 text-center text-gray-600 text-sm">
           Already have an account?{" "}
           <Link
             to="/login"

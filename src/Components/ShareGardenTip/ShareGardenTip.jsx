@@ -43,7 +43,7 @@ const ShareGardenTip = () => {
 
   return (
     <section className="max-w-3xl mx-auto p-8 my-12 ">
-      <h2 className="text-4xl font-extrabold text-green-800 text-center mb-8 tracking-wide drop-shadow-md">
+      <h2 className="text-4xl font-extrabold text-white text-center mb-8 tracking-wide drop-shadow-md">
         🌿 Share a Garden Tip
       </h2>
 
@@ -53,7 +53,7 @@ const ShareGardenTip = () => {
           type="text"
           name="title"
           placeholder="e.g., How I Grow Tomatoes Indoors"
-          className="w-full p-4 border-2 border-green-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-green-400 focus:border-green-600 placeholder-green-700 text-green-900 shadow-sm transition"
+          className="w-full p-4 border-2 border-green-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-green-400 focus:border-green-600 placeholder-green-700 text-green-900 shadow-sm transition bg-white "
           required
         />
 
@@ -62,7 +62,7 @@ const ShareGardenTip = () => {
           type="text"
           name="plantType"
           placeholder="Plant Type / Topic"
-          className="w-full p-4 border-2 border-green-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-green-400 focus:border-green-600 placeholder-green-700 text-green-900 shadow-sm transition"
+          className="w-full p-4 border-2 border-green-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-green-400 focus:border-green-600 placeholder-green-700 text-green-900 shadow-sm transition bg-white "
           required
         />
 
@@ -81,7 +81,7 @@ const ShareGardenTip = () => {
         <textarea
           name="description"
           placeholder="Write your tip in detail..."
-          className="w-full p-4 border-2 border-green-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-green-400 focus:border-green-600 placeholder-green-700 text-green-900 shadow-sm transition resize-none"
+          className="w-full p-4 border-2 border-green-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-green-400 focus:border-green-600 placeholder-green-700 text-green-900 shadow-sm transition resize-none bg-white "
           rows={5}
           required
         ></textarea>
@@ -91,7 +91,7 @@ const ShareGardenTip = () => {
           type="text"
           name="imageUrl"
           placeholder="Image URL"
-          className="w-full p-4 border-2 border-green-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-green-400 focus:border-green-600 placeholder-green-700 text-green-900 shadow-sm transition"
+          className="w-full p-4 border-2 border-green-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-green-400 focus:border-green-600 placeholder-green-700 text-green-900 shadow-sm transition bg-white "
         />
 
         {/* Category */}

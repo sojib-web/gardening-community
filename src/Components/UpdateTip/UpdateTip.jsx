@@ -48,80 +48,87 @@ const UpdateTip = () => {
   };
 
   return (
-    <section className="max-w-3xl mx-auto py-10 px-4">
-      <h2 className="text-3xl font-bold mb-6 text-center text-green-700">
-        ✏️ Update Tip
-      </h2>
+    <section className="flex justify-center items-center min-h-screen bg-gradient-to-br from-green-100 to-green-300 px-4">
+      <div className="bg-white p-8 rounded-2xl shadow-xl max-w-2xl w-full">
+        <h2 className="text-3xl font-bold text-green-800 mb-6 text-center">
+          ✏️ Update Garden Tip
+        </h2>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="text"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-          placeholder="Title"
-          className="input w-full"
-          required
-        />
-        <input
-          type="text"
-          name="category"
-          value={formData.category}
-          onChange={handleChange}
-          placeholder="Category"
-          className="input w-full"
-          required
-        />
-        <input
-          type="text"
-          name="imageUrl"
-          value={formData.imageUrl}
-          onChange={handleChange}
-          placeholder="Image URL"
-          className="input w-full"
-          required
-        />
-        <textarea
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-          placeholder="Description"
-          className="textarea w-full"
-          required
-        ></textarea>
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <input
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            placeholder="Tip Title"
+            className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400 text-gray-600"
+            required
+          />
 
-        <select
-          name="availability"
-          value={formData.availability}
-          onChange={handleChange}
-          className="select w-full"
-        >
-          <option value="public">Public</option>
-          <option value="private">Private</option>
-        </select>
+          <input
+            type="text"
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            placeholder="Category"
+            className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400 text-gray-600"
+            required
+          />
 
-        <input
-          type="text"
-          name="userName"
-          value={formData.userName}
-          readOnly
-          className="input w-full bg-gray-100"
-        />
-        <input
-          type="email"
-          name="userEmail"
-          value={formData.userEmail}
-          readOnly
-          className="input w-full bg-gray-100"
-        />
+          <input
+            type="text"
+            name="imageUrl"
+            value={formData.imageUrl}
+            onChange={handleChange}
+            placeholder="Image URL"
+            className="w-full px-4 py-2 border rounded-lg shadow-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400"
+            required
+          />
 
-        <button
-          type="submit"
-          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
-        >
-          ✅ Update Tip
-        </button>
-      </form>
+          <textarea
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            placeholder="Description"
+            className="w-full px-4 py-2 border rounded-lg shadow-sm h-28 resize-none focus:outline-none focus:ring-2 focus:ring-green-400 text-gray-600"
+            required
+          ></textarea>
+
+          <select
+            name="availability"
+            value={formData.availability}
+            onChange={handleChange}
+            className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400 text-gray-600"
+          >
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+          </select>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input
+              type="text"
+              name="userName"
+              value={formData.userName}
+              readOnly
+              className="w-full px-4 py-2 border rounded-lg bg-gray-100 text-gray-600"
+            />
+            <input
+              type="email"
+              name="userEmail"
+              value={formData.userEmail}
+              readOnly
+              className="w-full px-4 py-2 border rounded-lg bg-gray-100 text-gray-600"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-green-600 hover:bg-green-700 transition-colors text-white py-2 rounded-lg font-semibold shadow-md"
+          >
+            ✅ Update Tip
+          </button>
+        </form>
+      </div>
     </section>
   );
 };
