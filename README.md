@@ -34,6 +34,16 @@
 
 ---
 
+## 🚀 Relevant Links
+Client Repository: https://github.com/sojib-web/gardening-community-client
+
+Server Repository: https://github.com/sojib-web/gardening-community-server
+
+Portfolio: https://gardening-community-client.web.app/
+
+ 👤 **Facebook:** [Md Sojib Ali](https://www.facebook.com/sojib.ahmed.71271466)
+
+
 ## 🚀 Getting Started (Run Locally)
 
 ```bash
