@@ -6,7 +6,7 @@
 
 ## 📸 Screenshot
 
-![Gardening Community Screenshot](https://i.ibb.co/6cykt1t3/Md-Sojib-Ali.png)
+![Gardening Community Screenshot]([https://i.ibb.co/6cykt1t3/Md-Sojib-Ali.png](https://i.ibb.co/1JbNs2Qw/gardening-community-client-web-app.png))
 
 ---
 
