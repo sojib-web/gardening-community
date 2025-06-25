@@ -13,11 +13,11 @@ const TopTrendingTips = ({ tips }) => {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
+      <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-8">
         {tips.map((tip) => (
           <div
             key={tip._id}
-            className="bg-white rounded-xl shadow-lg  hover:shadow-2xl hover:scale-[1.02] transition duration-300 group"
+            className="bg-white rounded-xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transition duration-300 group"
           >
             <div className="overflow-hidden rounded-t-xl">
               <img

@@ -25,12 +25,8 @@ export const router = createBrowserRouter([
         index: true,
         loader: async () => {
           const [gardeningRes, tipsRes] = await Promise.all([
-            fetch(
-              "https://gardening-community-server-plum.vercel.app/gardening"
-            ),
-            fetch(
-              "https://gardening-community-server-plum.vercel.app/top-trending-tips"
-            ),
+            fetch("http://localhost:3000/gardening"),
+            fetch("http://localhost:3000/top-trending-tips"),
           ]);
           const gardeningData = await gardeningRes.json();
           const topTrendingTips = await tipsRes.json();
@@ -43,15 +39,11 @@ export const router = createBrowserRouter([
       {
         path: "/gardenersList",
         Component: GardenersList,
-        loader: () =>
-          fetch("https://gardening-community-server-plum.vercel.app/gardening"),
+        loader: () => fetch("http://localhost:3000/gardening"),
       },
       {
         path: "/browseTips",
-        loader: () =>
-          fetch(
-            "https://gardening-community-server-plum.vercel.app/share-garden-tip"
-          ),
+        loader: () => fetch("http://localhost:3000/share-garden-tip"),
         Component: BrowseTips,
         hydrateFallbackElement: Loader,
       },
@@ -65,10 +57,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/myTips",
-        loader: () =>
-          fetch(
-            "https://gardening-community-server-plum.vercel.app/share-garden-tip"
-          ),
+        loader: () => fetch("http://localhost:3000/share-garden-tip"),
         element: (
           <PrivateRoute>
             <MyTips />
@@ -92,9 +81,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://gardening-community-server-plum.vercel.app/share-garden-tip/${params.id}`
-          ),
+          fetch(`http://localhost:3000/share-garden-tip/${params.id}`),
       },
       {
         path: "signup",

@@ -18,12 +18,9 @@ const MyTips = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          `https://gardening-community-server-plum.vercel.app/share-garden-tip/${_id}`,
-          {
-            method: "DELETE",
-          }
-        )
+        fetch(`http://localhost:3000/share-garden-tip/${_id}`, {
+          method: "DELETE",
+        })
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {

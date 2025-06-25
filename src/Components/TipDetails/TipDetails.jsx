@@ -10,9 +10,7 @@ const TipDetails = () => {
   const [liked, setLiked] = useState(false);
 
   useEffect(() => {
-    fetch(
-      `https://gardening-community-server-plum.vercel.app/share-garden-tip/${id}`
-    )
+    fetch(`http://localhost:3000/share-garden-tip/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setTip(data);
