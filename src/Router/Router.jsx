@@ -14,6 +14,8 @@ import TipDetails from "../Components/TipDetails/TipDetails";
 import UpdateTip from "../Components/UpdateTip/UpdateTip";
 import NotFound from "../Components/NotFound/NotFound";
 import Loader from "../Components/Loader/Loader";
+import GardenerDetails from "../Components/FeaturedGardeners/GardenerDetails";
+// import GardenerDetails from "../Components/FeaturedGardeners/GardenerDetails";
 
 export const router = createBrowserRouter([
   {
@@ -82,6 +84,14 @@ export const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:3000/share-garden-tip/${params.id}`),
+      },
+
+      {
+        path: "/campaign/:id",
+        Component: GardenerDetails,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/gardening/${params.id}`),
+        hydrateFallbackElement: <Loader />,
       },
       {
         path: "signup",

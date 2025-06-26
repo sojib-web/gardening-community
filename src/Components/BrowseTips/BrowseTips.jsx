@@ -7,6 +7,7 @@ const BrowseTips = () => {
 
   const [selectedDifficulty, setSelectedDifficulty] = useState("");
   const [filteredData, setFilteredData] = useState(BrowseData);
+  const [sortOrder, setSortOrder] = useState("asc");
 
   const handleSeeMore = (id) => {
     navigate(`/tip-details/${id}`);
@@ -26,14 +27,23 @@ const BrowseTips = () => {
     }
   };
 
+  const sortedData = [...filteredData].sort((a, b) => {
+    if (sortOrder === "asc") {
+      return a.title.localeCompare(b.title);
+    } else {
+      return b.title.localeCompare(a.title);
+    }
+  });
+
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h2 className="text-4xl font-extrabold text-white text-center mb-10">
         🌿 Browse Gardening Tips
       </h2>
 
-      {/* Filter Dropdown */}
-      <div className="mb-6 flex justify-end">
+      {/* Filter and Sort Controls */}
+      <div className="mb-6 flex justify-between items-center">
+        {/* Filter */}
         <select
           value={selectedDifficulty}
           onChange={handleDifficultyChange}
@@ -44,8 +54,22 @@ const BrowseTips = () => {
           <option value="Medium">Medium</option>
           <option value="Hard">Hard</option>
         </select>
+
+        {/* Sort */}
+        <div className="flex items-center gap-2">
+          <label className="text-white font-semibold">Sort by Title:</label>
+          <select
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+            className="px-4 py-2 border border-green-400 rounded-lg shadow text-white font-medium bg-green-900"
+          >
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+        </div>
       </div>
 
+      {/* Tips Table */}
       <div className="overflow-x-auto rounded-2xl shadow-2xl border border-green-200 bg-white">
         <table className="min-w-full rounded-2xl overflow-hidden">
           <thead>
@@ -68,8 +92,8 @@ const BrowseTips = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredData.length > 0 ? (
-              filteredData.map((tip, index) => (
+            {sortedData.length > 0 ? (
+              sortedData.map((tip, index) => (
                 <tr
                   key={tip._id}
                   className={`${
