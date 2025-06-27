@@ -32,8 +32,12 @@ export const router = createBrowserRouter([
         index: true,
         loader: async () => {
           const [gardeningRes, tipsRes] = await Promise.all([
-            fetch("http://localhost:3000/gardening"),
-            fetch("http://localhost:3000/top-trending-tips"),
+            fetch(
+              "https://class-a-gardening-community-gardeni.vercel.app/gardening"
+            ),
+            fetch(
+              "https://class-a-gardening-community-gardeni.vercel.app/top-trending-tips"
+            ),
           ]);
           const gardeningData = await gardeningRes.json();
           const topTrendingTips = await tipsRes.json();
@@ -45,11 +49,17 @@ export const router = createBrowserRouter([
       {
         path: "/gardenersList",
         Component: GardenersList,
-        loader: () => fetch("http://localhost:3000/gardening"),
+        loader: () =>
+          fetch(
+            "https://class-a-gardening-community-gardeni.vercel.app/gardening"
+          ),
       },
       {
         path: "/browseTips",
-        loader: () => fetch("http://localhost:3000/share-garden-tip"),
+        loader: () =>
+          fetch(
+            "https://class-a-gardening-community-gardeni.vercel.app/share-garden-tip"
+          ),
         Component: BrowseTips,
         hydrateFallbackElement: Loader,
       },
@@ -63,7 +73,10 @@ export const router = createBrowserRouter([
       },
       {
         path: "/myTips",
-        loader: () => fetch("http://localhost:3000/share-garden-tip"),
+        loader: () =>
+          fetch(
+            "https://class-a-gardening-community-gardeni.vercel.app/share-garden-tip"
+          ),
         element: (
           <PrivateRoute>
             <MyTips />
@@ -87,13 +100,17 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/share-garden-tip/${params.id}`),
+          fetch(
+            `https://class-a-gardening-community-gardeni.vercel.app/share-garden-tip/${params.id}`
+          ),
       },
       {
         path: "/campaign/:id",
         Component: GardenerDetails,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/gardening/${params.id}`),
+          fetch(
+            `https://class-a-gardening-community-gardeni.vercel.app/gardening/${params.id}`
+          ),
         hydrateFallbackElement: <Loader />,
       },
       {
@@ -123,8 +140,12 @@ export const router = createBrowserRouter([
         element: <Overview />,
         loader: async () => {
           const [tipsRes, itemsRes] = await Promise.all([
-            fetch("http://localhost:3000/share-garden-tip"),
-            fetch("http://localhost:3000/gardening"),
+            fetch(
+              "https://class-a-gardening-community-gardeni.vercel.app/share-garden-tip"
+            ),
+            fetch(
+              "https://class-a-gardening-community-gardeni.vercel.app/gardening"
+            ),
           ]);
 
           const tips = await tipsRes.json();
@@ -136,7 +157,10 @@ export const router = createBrowserRouter([
       {
         path: "all-items",
         element: <AllItems />,
-        loader: () => fetch("http://localhost:3000/share-garden-tip"),
+        loader: () =>
+          fetch(
+            "https://class-a-gardening-community-gardeni.vercel.app/share-garden-tip"
+          ),
         hydrateFallbackElement: Loader,
       },
       {
@@ -146,7 +170,10 @@ export const router = createBrowserRouter([
       {
         path: "my-items",
         element: <MyItems />,
-        loader: () => fetch("http://localhost:3000/share-garden-tip"),
+        loader: () =>
+          fetch(
+            "https://class-a-gardening-community-gardeni.vercel.app/share-garden-tip"
+          ),
       },
     ],
   },

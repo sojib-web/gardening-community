@@ -11,13 +11,16 @@ const ShareGardenTip = () => {
     const formData = new FormData(form);
     const tipData = Object.fromEntries(formData.entries());
 
-    fetch(`http://localhost:3000/share-garden-tip`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(tipData),
-    })
+    fetch(
+      `https://gardening-community-server-plum.vercel.app/share-garden-tip`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(tipData),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {

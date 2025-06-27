@@ -10,13 +10,16 @@ const AddItem = () => {
     const tipData = Object.fromEntries(formData.entries());
 
     try {
-      const res = await fetch("http://localhost:3000/share-garden-tip", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(tipData),
-      });
+      const res = await fetch(
+        "https://gardening-community-server-plum.vercel.app/share-garden-tip",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(tipData),
+        }
+      );
 
       const result = await res.json();
 
