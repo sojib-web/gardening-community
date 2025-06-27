@@ -7,6 +7,8 @@
 ## 📸 Screenshot
 
 ![Gardening Community Screenshot](https://i.ibb.co/1JbNs2Qw/gardening-community-client-web-app.png)
+![Gardening Community Screenshot](https://i.ibb.co/fGFVHHLG/gardening-community-client-web-app-2.png)
+
 
 ---
 
@@ -38,7 +40,7 @@
 
 - 🔗 **Client Repository:** [https://github.com/sojib-web/gardening-community-client](https://github.com/sojib-web/gardening-community-client)  
 - 🔗 **Server Repository:** [https://github.com/sojib-web/Class-A-Gardening-Community-gardening-community-server](https://github.com/sojib-web/Class-A-Gardening-Community-gardening-community-server)  
-- 🌐 **Live Site:** [https://gardening-community-client.web.app](https://gardening-community-client.web.app)  
+- 🌐 **Live Site:** [https://gardening-community-client.web.app](https://gardening-community-client.web.app/)  
 - 👤 **Facebook:** [Md Sojib Ali](https://www.facebook.com/sojib.ahmed.71271466)
 
 ---
