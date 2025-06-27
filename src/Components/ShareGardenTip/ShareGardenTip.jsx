@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Swal from "sweetalert2";
+import { DarkModeContext } from "../../Context/DarkModeContext";
 
 const ShareGardenTip = () => {
+  const { darkMode } = useContext(DarkModeContext);
+
   const ShareGardenTipSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -23,7 +26,7 @@ const ShareGardenTip = () => {
             icon: "success",
             title: "Success!",
             text: "Your garden tip was shared successfully!",
-            confirmButtonColor: "#166534", // Tailwind green-800
+            confirmButtonColor: "#166534",
           });
         }
       })
@@ -33,113 +36,163 @@ const ShareGardenTip = () => {
           icon: "error",
           title: "Oops...",
           text: "Failed to share your tip. Please try again.",
-          confirmButtonColor: "#b91c1c", // Tailwind red-700
+          confirmButtonColor: "#b91c1c",
         });
       });
   };
 
   return (
-    <section className="max-w-3xl mx-auto p-8 my-12 ">
-      <h2 className="text-4xl font-extrabold text-white text-center mb-8 tracking-wide drop-shadow-md">
-        🌿 Share a Garden Tip
-      </h2>
-
-      <form onSubmit={ShareGardenTipSubmit} className="space-y-6">
-        {/* Title */}
-        <input
-          type="text"
-          name="title"
-          placeholder="e.g., How I Grow Tomatoes Indoors"
-          className="w-full p-4 border-2 border-green-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-green-400 focus:border-green-600 placeholder-green-700 text-green-900 shadow-sm transition bg-white "
-          required
-        />
-
-        {/* Topic */}
-        <input
-          type="text"
-          name="plantType"
-          placeholder="Plant Type / Topic"
-          className="w-full p-4 border-2 border-green-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-green-400 focus:border-green-600 placeholder-green-700 text-green-900 shadow-sm transition bg-white "
-          required
-        />
-
-        {/* Difficulty */}
-        <select
-          name="difficulty"
-          className="w-full p-4 border-2 border-green-300 rounded-lg bg-white text-green-900 focus:outline-none focus:ring-4 focus:ring-green-400 focus:border-green-600 shadow-sm transition"
-          required
+    <div
+      className={
+        darkMode ? "bg-gray-900 text-gray-100" : "bg-white text-gray-900"
+      }
+    >
+      <section
+        className={`max-w-3xl mx-auto p-8  transition-colors duration-300 ${
+          darkMode ? "bg-gray-900 text-gray-100" : "bg-white text-gray-900"
+        } rounded-2xl shadow-lg`}
+      >
+        <h2
+          className={`text-4xl font-extrabold text-center mb-8 tracking-wide drop-shadow-md ${
+            darkMode ? "text-lime-400" : "text-green-800"
+          }`}
         >
-          <option value="Easy">Easy</option>
-          <option value="Medium">Medium</option>
-          <option value="Hard">Hard</option>
-        </select>
+          🌿 Share a Garden Tip
+        </h2>
 
-        {/* Description */}
-        <textarea
-          name="description"
-          placeholder="Write your tip in detail..."
-          className="w-full p-4 border-2 border-green-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-green-400 focus:border-green-600 placeholder-green-700 text-green-900 shadow-sm transition resize-none bg-white "
-          rows={5}
-          required
-        ></textarea>
-
-        {/* Image URL */}
-        <input
-          type="text"
-          name="imageUrl"
-          placeholder="Image URL"
-          className="w-full p-4 border-2 border-green-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-green-400 focus:border-green-600 placeholder-green-700 text-green-900 shadow-sm transition bg-white "
-        />
-
-        {/* Category */}
-        <select
-          name="category"
-          className="w-full p-4 border-2 border-green-300 rounded-lg bg-white text-green-900 focus:outline-none focus:ring-4 focus:ring-green-400 focus:border-green-600 shadow-sm transition"
-          required
-        >
-          <option value="Composting">Composting</option>
-          <option value="Plant Care">Plant Care</option>
-          <option value="Vertical Gardening">Vertical Gardening</option>
-          <option value="Organic Gardening">Organic Gardening</option>
-        </select>
-
-        {/* Availability */}
-        <select
-          name="availability"
-          className="w-full p-4 border-2 border-green-300 rounded-lg bg-white text-green-900 focus:outline-none focus:ring-4 focus:ring-green-400 focus:border-green-600 shadow-sm transition"
-          required
-        >
-          <option value="Public">Public</option>
-          <option value="Hidden">Hidden</option>
-        </select>
-
-        {/* Read-only user info */}
-        <div className="grid grid-cols-2 gap-6">
+        <form onSubmit={ShareGardenTipSubmit} className="space-y-6">
+          {/* Title */}
           <input
             type="text"
-            name="userName"
-            value="John Doe"
-            readOnly
-            className="w-full p-4 bg-green-100 border-2 border-green-300 rounded-lg text-green-700 font-semibold shadow-inner"
+            name="title"
+            placeholder="e.g., How I Grow Tomatoes Indoors"
+            className={`w-full p-4 border-2 rounded-lg shadow-sm transition ${
+              darkMode
+                ? "bg-gray-800 border-gray-600 text-white placeholder-gray-400 focus:ring-lime-400 focus:border-lime-500"
+                : "bg-white border-green-300 text-green-900 placeholder-green-700 focus:ring-green-400 focus:border-green-600"
+            }`}
+            required
           />
-          <input
-            type="email"
-            name="userEmail"
-            value="john@example.com"
-            readOnly
-            className="w-full p-4 bg-green-100 border-2 border-green-300 rounded-lg text-green-700 font-semibold shadow-inner"
-          />
-        </div>
 
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full py-4 bg-green-700 text-white rounded-xl font-extrabold text-lg hover:bg-green-800 transition shadow-lg hover:shadow-xl"
-        >
-          Submit Tip
-        </button>
-      </form>
-    </section>
+          {/* Topic */}
+          <input
+            type="text"
+            name="plantType"
+            placeholder="Plant Type / Topic"
+            className={`w-full p-4 border-2 rounded-lg shadow-sm transition ${
+              darkMode
+                ? "bg-gray-800 border-gray-600 text-white placeholder-gray-400 focus:ring-lime-400 focus:border-lime-500"
+                : "bg-white border-green-300 text-green-900 placeholder-green-700 focus:ring-green-400 focus:border-green-600"
+            }`}
+            required
+          />
+
+          {/* Difficulty */}
+          <select
+            name="difficulty"
+            className={`w-full p-4 border-2 rounded-lg shadow-sm transition ${
+              darkMode
+                ? "bg-gray-800 border-gray-600 text-white focus:ring-lime-400 focus:border-lime-500"
+                : "bg-white border-green-300 text-green-900 focus:ring-green-400 focus:border-green-600"
+            }`}
+            required
+          >
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
+
+          {/* Description */}
+          <textarea
+            name="description"
+            placeholder="Write your tip in detail..."
+            className={`w-full p-4 border-2 rounded-lg resize-none shadow-sm transition ${
+              darkMode
+                ? "bg-gray-800 border-gray-600 text-white placeholder-gray-400 focus:ring-lime-400 focus:border-lime-500"
+                : "bg-white border-green-300 text-green-900 placeholder-green-700 focus:ring-green-400 focus:border-green-600"
+            }`}
+            rows={5}
+            required
+          ></textarea>
+
+          {/* Image URL */}
+          <input
+            type="text"
+            name="imageUrl"
+            placeholder="Image URL"
+            className={`w-full p-4 border-2 rounded-lg shadow-sm transition ${
+              darkMode
+                ? "bg-gray-800 border-gray-600 text-white placeholder-gray-400 focus:ring-lime-400 focus:border-lime-500"
+                : "bg-white border-green-300 text-green-900 placeholder-green-700 focus:ring-green-400 focus:border-green-600"
+            }`}
+          />
+
+          {/* Category */}
+          <select
+            name="category"
+            className={`w-full p-4 border-2 rounded-lg shadow-sm transition ${
+              darkMode
+                ? "bg-gray-800 border-gray-600 text-white focus:ring-lime-400 focus:border-lime-500"
+                : "bg-white border-green-300 text-green-900 focus:ring-green-400 focus:border-green-600"
+            }`}
+            required
+          >
+            <option value="Composting">Composting</option>
+            <option value="Plant Care">Plant Care</option>
+            <option value="Vertical Gardening">Vertical Gardening</option>
+            <option value="Organic Gardening">Organic Gardening</option>
+          </select>
+
+          {/* Availability */}
+          <select
+            name="availability"
+            className={`w-full p-4 border-2 rounded-lg shadow-sm transition ${
+              darkMode
+                ? "bg-gray-800 border-gray-600 text-white focus:ring-lime-400 focus:border-lime-500"
+                : "bg-white border-green-300 text-green-900 focus:ring-green-400 focus:border-green-600"
+            }`}
+            required
+          >
+            <option value="Public">Public</option>
+            <option value="Hidden">Hidden</option>
+          </select>
+
+          {/* Read-only user info */}
+          <div className="grid grid-cols-2 gap-6">
+            <input
+              type="text"
+              name="userName"
+              value="John Doe"
+              readOnly
+              className={`w-full p-4 border-2 rounded-lg font-semibold shadow-inner ${
+                darkMode
+                  ? "bg-gray-700 border-gray-500 text-white"
+                  : "bg-green-100 border-green-300 text-green-700"
+              }`}
+            />
+            <input
+              type="email"
+              name="userEmail"
+              value="john@example.com"
+              readOnly
+              className={`w-full p-4 border-2 rounded-lg font-semibold shadow-inner ${
+                darkMode
+                  ? "bg-gray-700 border-gray-500 text-white"
+                  : "bg-green-100 border-green-300 text-green-700"
+              }`}
+            />
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full py-4 bg-green-700 text-white rounded-xl font-extrabold text-lg hover:bg-green-800 transition shadow-lg hover:shadow-xl"
+          >
+            Submit Tip
+          </button>
+        </form>
+      </section>
+    </div>
   );
 };
 

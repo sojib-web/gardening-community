@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
+import { DarkModeContext } from "../../Context/DarkModeContext";
 
 const TopTrendingTips = ({ tips }) => {
+  const { darkMode } = useContext(DarkModeContext);
+
   return (
-    <div className="max-w-6xl mx-auto py-14 px-4">
+    <div
+      className={`max-w-6xl mx-auto py-14 px-4 transition-colors duration-300`}
+    >
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-white mb-2">
+        <h2
+          className={`text-4xl font-bold mb-2 ${
+            darkMode ? "text-lime-400" : "text-white"
+          }`}
+        >
           🌿 Top Trending Gardening Tips
         </h2>
-        <p className="text-white text-sm max-w-xl mx-auto">
+        <p
+          className={`text-sm max-w-xl mx-auto ${
+            darkMode ? "text-gray-300" : "text-white"
+          }`}
+        >
           Discover the most effective gardening tips handpicked from expert
           gardeners to transform your outdoor space.
         </p>
@@ -17,7 +30,9 @@ const TopTrendingTips = ({ tips }) => {
         {tips.map((tip) => (
           <div
             key={tip._id}
-            className="bg-white rounded-xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transition duration-300 group"
+            className={`rounded-xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transition duration-300 group ${
+              darkMode ? "bg-gray-800" : "bg-white"
+            }`}
           >
             <div className="overflow-hidden rounded-t-xl">
               <img
@@ -28,14 +43,24 @@ const TopTrendingTips = ({ tips }) => {
             </div>
             <div className="p-5 space-y-3">
               <div className="flex justify-between items-center">
-                <h3 className="text-xl font-semibold text-green-800">
+                <h3
+                  className={`text-xl font-semibold ${
+                    darkMode ? "text-lime-300" : "text-green-800"
+                  }`}
+                >
                   {tip.title}
                 </h3>
-                <span className="badge badge-success text-white text-xs">
+                <span className="bg-green-600 text-white text-xs rounded px-2 py-0.5">
                   Tip
                 </span>
               </div>
-              <p className="text-sm text-gray-700">{tip.description}</p>
+              <p
+                className={`${
+                  darkMode ? "text-gray-300" : "text-gray-700"
+                } text-sm`}
+              >
+                {tip.description}
+              </p>
               <p className="text-sm text-right italic text-green-500">
                 — {tip.author}
               </p>

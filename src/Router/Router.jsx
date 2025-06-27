@@ -15,7 +15,12 @@ import UpdateTip from "../Components/UpdateTip/UpdateTip";
 import NotFound from "../Components/NotFound/NotFound";
 import Loader from "../Components/Loader/Loader";
 import GardenerDetails from "../Components/FeaturedGardeners/GardenerDetails";
-// import GardenerDetails from "../Components/FeaturedGardeners/GardenerDetails";
+
+import DashboardLayout from "../DashboardLayout/DashboardLayout";
+import Overview from "../DashboardLayout/Overview";
+import AllItems from "../DashboardLayout/AllItems";
+import AddItem from "../DashboardLayout/AddItem";
+import MyItems from "../DashboardLayout/MyItems";
 
 export const router = createBrowserRouter([
   {
@@ -37,7 +42,6 @@ export const router = createBrowserRouter([
         Component: Home,
         hydrateFallbackElement: <Loader />,
       },
-
       {
         path: "/gardenersList",
         Component: GardenersList,
@@ -85,7 +89,6 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:3000/share-garden-tip/${params.id}`),
       },
-
       {
         path: "/campaign/:id",
         Component: GardenerDetails,
@@ -104,6 +107,46 @@ export const router = createBrowserRouter([
       {
         path: "*",
         Component: NotFound,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: <Overview />,
+        loader: async () => {
+          const [tipsRes, itemsRes] = await Promise.all([
+            fetch("http://localhost:3000/share-garden-tip"),
+            fetch("http://localhost:3000/gardening"),
+          ]);
+
+          const tips = await tipsRes.json();
+          const items = await itemsRes.json();
+
+          return { tips, items };
+        },
+      },
+      {
+        path: "all-items",
+        element: <AllItems />,
+        loader: () => fetch("http://localhost:3000/share-garden-tip"),
+        hydrateFallbackElement: Loader,
+      },
+      {
+        path: "add-item",
+        element: <AddItem />,
+      },
+      {
+        path: "my-items",
+        element: <MyItems />,
+        loader: () => fetch("http://localhost:3000/share-garden-tip"),
       },
     ],
   },

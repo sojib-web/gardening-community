@@ -3,8 +3,10 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Context/AuthContext";
+import { DarkModeContext } from "../../Context/DarkModeContext";
 
 const Login = () => {
+  const { darkMode } = useContext(DarkModeContext);
   const { logIn, googleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,7 +29,7 @@ const Login = () => {
         });
         navigate(location?.state || "/");
       })
-      .catch((error) => {
+      .catch(() => {
         Swal.fire({
           icon: "error",
           title: "Something Went Wrong!",
@@ -59,48 +61,72 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="bg-white shadow-2xl rounded-3xl p-10 max-w-md w-full relative">
+    <div
+      className={`min-h-screen flex items-center justify-center px-4 transition-colors duration-300 ${
+        darkMode ? "bg-gray-900 text-white" : "bg-gray-100"
+      }`}
+    >
+      <div
+        className={`shadow-2xl rounded-3xl p-10 max-w-md w-full relative transition-all ${
+          darkMode ? "bg-gray-800 text-white" : "bg-white text-gray-900"
+        }`}
+      >
+        {/* Avatar */}
         <div className="absolute -top-12 left-1/2 transform -translate-x-1/2">
           <div className="w-24 h-24 rounded-full bg-green-500 text-white text-3xl font-bold flex items-center justify-center shadow-xl border-4 border-white">
             🔐
           </div>
         </div>
 
-        <h2 className="text-3xl font-extrabold text-center text-green-700 mt-16 mb-8">
+        {/* Heading */}
+        <h2
+          className={`text-3xl font-extrabold text-center mt-16 mb-8 ${
+            darkMode ? "text-lime-400" : "text-green-700"
+          }`}
+        >
           Welcome Back!
         </h2>
 
+        {/* Form */}
         <form onSubmit={handleLogin} className="space-y-5">
           <div>
-            <label className="text-sm text-gray-600">Email</label>
+            <label className="text-sm">Email</label>
             <input
               type="email"
               name="email"
               placeholder="you@example.com"
-              className="w-full text-gray-600 p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={`w-full p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 ${
+                darkMode
+                  ? "bg-gray-700 text-white border-gray-600 focus:ring-lime-400"
+                  : "bg-white text-gray-800 border-gray-300 focus:ring-blue-500"
+              }`}
               required
             />
           </div>
           <div>
-            <label className="text-sm text-gray-600">Password</label>
+            <label className="text-sm">Password</label>
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="••••••••"
-                className="w-full text-gray-600 p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 pr-12"
+                className={`w-full p-3 mt-1 border rounded-lg focus:outline-none focus:ring-2 pr-12 ${
+                  darkMode
+                    ? "bg-gray-700 text-white border-gray-600 focus:ring-lime-400"
+                    : "bg-white text-gray-800 border-gray-300 focus:ring-blue-500"
+                }`}
                 required
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-sm text-gray-600"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-sm text-gray-500"
               >
                 {showPassword ? "Hide" : "Show"}
               </button>
             </div>
           </div>
+
           <button
             type="submit"
             className="w-full bg-green-600 text-white py-3 rounded-xl hover:bg-green-700 transition-all"
@@ -109,6 +135,7 @@ const Login = () => {
           </button>
         </form>
 
+        {/* Google Login */}
         <div className="mt-6">
           <button
             onClick={handleGoogleLogin}
@@ -128,7 +155,12 @@ const Login = () => {
           </button>
         </div>
 
-        <p className="mt-6 text-center text-gray-600 text-sm">
+        {/* Register Link */}
+        <p
+          className={`mt-6 text-center text-sm ${
+            darkMode ? "text-gray-300" : "text-gray-600"
+          }`}
+        >
           Don’t have an account?{" "}
           <Link
             to="/signup"
